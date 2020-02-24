@@ -20,7 +20,12 @@ plugins {
 }
 
 config {
+    bintray    { enabled = true }
+    publishing { enabled = true }
     docs {
+        groovydoc  {
+            enabled = false
+        }
         javadoc {
             enabled = false
         }
