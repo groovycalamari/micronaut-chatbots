@@ -15,6 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id 'org.kordamp.gradle.guide'
+package io.micronaut.bots.telegram.core;
+
+import io.micronaut.core.annotation.Introspected;
+
+/**
+ * Represents a photo to be sent.
+ */
+@Introspected
+public class InputMediaPhoto extends InputMedia {
+
+    public static final String TYPE_PHOTO = "photo";
+
+
+    public InputMediaPhoto() {
+        super(TYPE_PHOTO);
+    }
+
+    @Override
+    public String toString() {
+        return "InputMediaPhoto{"+
+                super.toString() +
+                "}";
+    }
 }

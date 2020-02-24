@@ -15,6 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id 'org.kordamp.gradle.guide'
+package io.micronaut.bots.telegram.core
+
+import spock.lang.Specification
+
+class CallbackQuerySpec extends Specification {
+    void "CallbackQuery::toString() does not throw NPE"() {
+        when:
+        new CallbackQuery().toString()
+
+        then:
+        noExceptionThrown()
+    }
 }

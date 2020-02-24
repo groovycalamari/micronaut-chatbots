@@ -15,6 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id 'org.kordamp.gradle.guide'
+package io.micronaut.bots.telegram.core;
+
+import io.micronaut.core.annotation.Introspected;
+
+/**
+ * A placeholder, currently holds no information. Use BotFather to set up your game.
+ */
+@Introspected
+public class CallbackGame {
+
+    public CallbackGame() {
+    }
 }

@@ -15,6 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id 'org.kordamp.gradle.guide'
+package io.micronaut.bots.telegram.core
+
+import spock.lang.Specification
+
+class UpdateSpec extends Specification {
+
+    void "Update::toString() does not throw NPE"() {
+        when:
+        new Update().toString()
+
+        then:
+        noExceptionThrown()
+    }
 }
