@@ -21,6 +21,8 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
+import io.micronaut.bots.telegram.httpclient.TelegramBot;
+
 import java.util.Optional;
 
 public interface CommandHandler {
@@ -37,7 +39,7 @@ public interface CommandHandler {
         return null;
     }
 
-    <T extends Send> Optional<T> handle(@NonNull Update update);
+    <T extends Send> Optional<T> handle(@NonNull TelegramBot telegramBot, @NonNull Update update);
 
     @Nullable
     static String parseText(@NonNull Update update) {

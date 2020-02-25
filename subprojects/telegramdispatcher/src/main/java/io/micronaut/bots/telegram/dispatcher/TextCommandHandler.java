@@ -21,16 +21,17 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.SendMessage;
 import io.micronaut.bots.telegram.core.Update;
+import io.micronaut.bots.telegram.httpclient.TelegramBot;
 
 import java.util.Optional;
 
 public abstract class TextCommandHandler implements CommandHandler {
     @NonNull
-    protected abstract Optional<String> replyUpdate(@NonNull Update update);
+    protected abstract Optional<String> replyUpdate(@NonNull TelegramBot telegramBot, @NonNull Update update);
 
     @Override
-    public <T extends Send> Optional<T> handle(@NonNull Update update) {
-        Optional<String> textOpt = replyUpdate(update);
+    public <T extends Send> Optional<T> handle(@NonNull TelegramBot telegramBot, @NonNull Update update) {
+        Optional<String> textOpt = replyUpdate(telegramBot, update);
         if (!textOpt.isPresent()) {
             return Optional.empty();
         }

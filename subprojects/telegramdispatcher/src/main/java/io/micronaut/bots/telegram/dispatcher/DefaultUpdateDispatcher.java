@@ -49,7 +49,7 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
         if (text != null && (isPrivateMessage || isMessageTargetToTheBot)) {
             if (applicationContext.containsBean(CommandHandler.class, Qualifiers.byName(text))) {
                 CommandHandler handler = applicationContext.getBean(CommandHandler.class, Qualifiers.byName(text));
-                return handler.handle(update);
+                return handler.handle(telegramBot, update);
             }
             return handleUpdateNotProcessedByCommands(telegramBot, update);
         }
