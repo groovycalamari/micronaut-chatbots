@@ -37,19 +37,19 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
         this.applicationContext = applicationContext;
     }
 
-    public Optional<Send> dispatch(TelegramBot telegramBot, @NonNull Update update) {
+    public Optional<Send> dispatch(@NonNull TelegramBot telegramBot, @NonNull Update update) {
         String text = CommandHandler.parseText(update);
         if (text != null) {
             if (applicationContext.containsBean(CommandHandler.class, Qualifiers.byName(text))) {
                 CommandHandler handler = applicationContext.getBean(CommandHandler.class, Qualifiers.byName(text));
                 return handler.handle(update);
             }
-            return handleUpdateNotProcessedByCommands(update);
+            return handleUpdateNotProcessedByCommands(telegramBot, update);
         }
         return Optional.empty();
     }
 
-    protected Optional<Send> handleUpdateNotProcessedByCommands(Update update) {
+    protected Optional<Send> handleUpdateNotProcessedByCommands(@NonNull TelegramBot telegramBot, Update update) {
         Integer chatId = CommandHandler.parseChatId(update);
         if (chatId != null) {
             return Optional.of(defaultMessage(chatId));

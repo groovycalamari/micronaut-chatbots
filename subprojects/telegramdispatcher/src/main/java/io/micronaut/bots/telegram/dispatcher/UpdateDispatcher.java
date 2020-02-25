@@ -25,5 +25,5 @@ import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import java.util.Optional;
 
 public interface UpdateDispatcher {
-    Optional<Send> dispatch(TelegramBot bot, @NonNull Update update);
+    Optional<Send> dispatch(@NonNull TelegramBot bot, @NonNull Update update);
 }

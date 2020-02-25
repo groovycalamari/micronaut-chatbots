@@ -66,6 +66,7 @@ public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayPr
         APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent = new APIGatewayProxyResponseEvent();
 
         if (telegramBots.stream().noneMatch(bot -> (PATH_START + bot.getToken()).equals(path))) {
+            LOG.warn("not telegram bot found for token");
             apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.UNAUTHORIZED.getCode());
             return apiGatewayProxyResponseEvent;
         }
