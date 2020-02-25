@@ -33,7 +33,12 @@ config {
 }
 
 dependencies {
+    annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+
+
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation "io.micronaut:micronaut-inject"
 
     implementation "com.amazonaws:aws-lambda-java-events:$awsLambdaJavaEventsVersion"
 
