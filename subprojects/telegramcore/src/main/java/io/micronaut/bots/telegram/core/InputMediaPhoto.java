@@ -17,12 +17,14 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 /**
  * Represents a photo to be sent.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputMediaPhoto extends InputMedia {
 
     public static final String TYPE_PHOTO = "photo";

@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -25,6 +26,7 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GetUserProfilePhotos {
 
     /**

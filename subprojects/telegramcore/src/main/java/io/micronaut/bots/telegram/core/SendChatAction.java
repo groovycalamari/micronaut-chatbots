@@ -17,12 +17,14 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SendChatAction extends Send {
 
     /**

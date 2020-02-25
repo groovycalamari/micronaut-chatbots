@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -28,6 +29,7 @@ import javax.validation.constraints.NotBlank;
  * @see <a href="https://core.telegram.org/bots/api#chatphoto>ChatPhoto</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatPhoto {
     /**
      * File identifier of small (160x160) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed.

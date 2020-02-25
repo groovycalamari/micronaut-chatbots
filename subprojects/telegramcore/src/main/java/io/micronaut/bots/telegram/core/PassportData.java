@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
  * @see <a href="https://core.telegram.org/bots/api#passportdata">PassportData</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PassportData {
     /**
      * Array with information about documents and other Telegram Passport elements that was shared with the bot

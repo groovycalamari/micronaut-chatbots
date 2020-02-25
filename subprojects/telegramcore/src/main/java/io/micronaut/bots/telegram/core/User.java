@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -30,6 +31,7 @@ import javax.validation.constraints.NotNull;
  * <a href="https://core.telegram.org/bots/api#user">User</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     /**
      * Unique identifier for this user or bot

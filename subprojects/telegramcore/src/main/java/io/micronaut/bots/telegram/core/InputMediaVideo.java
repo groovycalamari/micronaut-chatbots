@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -26,6 +27,7 @@ import javax.annotation.Nullable;
  * Represents a video to be sent.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputMediaVideo extends InputMediaDocument {
     private static final String TYPE_VIDEO = "video";
 

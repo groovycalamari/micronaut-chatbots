@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -26,6 +27,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ForwardMessage {
     /**
      * Unique identifier for the target chat or username of the target channel (in the format @channelusername).

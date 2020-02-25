@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.annotation.Nullable;
@@ -25,6 +26,7 @@ import javax.annotation.Nullable;
  * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputMediaAnimation extends InputMediaDocument {
     private static final String TYPE_ANIMATION = "animation";
 

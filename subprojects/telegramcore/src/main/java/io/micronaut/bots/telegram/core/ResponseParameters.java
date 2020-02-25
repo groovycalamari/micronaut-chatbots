@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
  * @see <a href="https://core.telegram.org/bots/api#responseparameters">ResponseParameters</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseParameters {
     /**
      * The group has been migrated to a supergroup with the specified identifier. This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.

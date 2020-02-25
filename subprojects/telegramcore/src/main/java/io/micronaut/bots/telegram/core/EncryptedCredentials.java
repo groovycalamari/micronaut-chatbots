@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.annotation.Nonnull;
@@ -27,6 +28,7 @@ import javax.validation.constraints.NotBlank;
  * @see <a href="https://core.telegram.org/bots/api#encryptedcredentials">EncryptedCredentials</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EncryptedCredentials {
 
     /**

@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -29,6 +30,7 @@ import javax.validation.constraints.NotNull;
  * This object represents a sticker.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Sticker {
     /**
      * Identifier for this file, which can be used to download or reuse the file

@@ -17,12 +17,14 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 /**
  * A placeholder, currently holds no information. Use BotFather to set up your game.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CallbackGame {
 
     public CallbackGame() {

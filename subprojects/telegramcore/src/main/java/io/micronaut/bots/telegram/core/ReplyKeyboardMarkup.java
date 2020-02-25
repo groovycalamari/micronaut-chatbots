@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -31,6 +32,7 @@ import java.util.stream.Collectors;
  * @see <a href="https://core.telegram.org/bots/api#replykeyboardmarkup">ReplyKeyboardMarkup</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReplyKeyboardMarkup {
 
     /**

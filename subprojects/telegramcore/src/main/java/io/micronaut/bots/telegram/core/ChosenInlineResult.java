@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 
@@ -31,6 +32,7 @@ import javax.validation.constraints.NotNull;
  * @see <a href="https://core.telegram.org/bots/api#choseninlineresult">ChoseInlineResult</a>
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChosenInlineResult {
     /**
      * The unique identifier for the result that was chosen

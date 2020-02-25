@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.annotation.Nullable;
@@ -26,6 +27,7 @@ import javax.annotation.Nullable;
  * @see <a href="https://core.telegram.org/bots/api#keyboardbuttonpolltype">KeybaordButtonPollType</a>.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class KeyboardButtonPollType {
 
     /**

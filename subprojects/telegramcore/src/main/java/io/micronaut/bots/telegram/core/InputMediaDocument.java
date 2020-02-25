@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.annotation.Nullable;
@@ -25,6 +26,7 @@ import javax.annotation.Nullable;
  * Represents a general file to be sent.
  */
 @Introspected
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputMediaDocument extends InputMedia {
     private static final String TYPE_DOCUMENT = "document";
 
