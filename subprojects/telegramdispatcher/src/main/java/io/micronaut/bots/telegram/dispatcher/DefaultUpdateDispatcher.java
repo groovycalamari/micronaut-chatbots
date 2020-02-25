@@ -18,6 +18,7 @@
 package io.micronaut.bots.telegram.dispatcher;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import io.micronaut.bots.telegram.core.ChatType;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.SendMessage;
 import io.micronaut.bots.telegram.core.Update;
@@ -39,7 +40,13 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
 
     public Optional<Send> dispatch(@NonNull TelegramBot telegramBot, @NonNull Update update) {
         String text = CommandHandler.parseText(update);
-        if (text != null) {
+        String type = CommandHandler.parseType(update);
+
+        boolean isPrivateMessage = (type != null && type.equals(ChatType.PRIVATE.toString()));
+
+        boolean isMessageTargetToTheBot = text != null && text.contains(telegramBot.getAtUsername());
+
+        if (text != null && (isPrivateMessage || isMessageTargetToTheBot)) {
             if (applicationContext.containsBean(CommandHandler.class, Qualifiers.byName(text))) {
                 CommandHandler handler = applicationContext.getBean(CommandHandler.class, Qualifiers.byName(text));
                 return handler.handle(update);

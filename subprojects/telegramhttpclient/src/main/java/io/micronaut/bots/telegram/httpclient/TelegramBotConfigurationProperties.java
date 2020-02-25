@@ -21,6 +21,7 @@ import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 
 @EachProperty("telegram.bots")
@@ -36,6 +37,11 @@ public class TelegramBotConfigurationProperties implements TelegramBotConfigurat
     @NotBlank
     @NonNull
     private String token;
+
+    //TODO add pattern to start with @
+    @NotBlank
+    @NonNull
+    private String atUsername;
 
     public TelegramBotConfigurationProperties(@Parameter String name) {
         this.name = name;
@@ -64,5 +70,15 @@ public class TelegramBotConfigurationProperties implements TelegramBotConfigurat
 
     public void setToken(@NonNull String token) {
         this.token = token;
+    }
+
+    @Nonnull
+    @Override
+    public String getAtUsername() {
+        return atUsername;
+    }
+
+    public void setAtUsername(String atUsername) {
+        this.atUsername = atUsername;
     }
 }

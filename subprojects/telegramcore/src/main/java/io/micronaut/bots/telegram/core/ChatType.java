@@ -15,17 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.httpclient;
+package io.micronaut.bots.telegram.core;
 
-import io.micronaut.context.annotation.EachBean;
-import io.micronaut.context.annotation.Factory;
+public enum ChatType {
+    PRIVATE("private"),
+    GROUP("group"),
+    SUPERGROUP("supergroup"),
+    CHANNEL("channel");
 
-@Factory
-public class TelegramBotFactory {
+    private String value;
+    ChatType(String value) {
+        this.value = value;
+    }
 
-    @EachBean(TelegramBotConfiguration.class)
-    public TelegramBot buildTelegramBot(TelegramBotConfiguration configuration,
-                                        TelegramApi telegramApi) {
-        return new TelegramBot(configuration.getToken(), configuration.getAtUsername(), telegramApi);
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

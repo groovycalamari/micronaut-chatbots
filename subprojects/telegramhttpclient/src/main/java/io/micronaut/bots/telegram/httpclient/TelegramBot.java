@@ -45,10 +45,15 @@ public class TelegramBot {
     @NonNull
     private String token;
 
+    @NotBlank
+    @NonNull
+    private String atUsername;
+
     private TelegramApi telegramApi;
 
-    public TelegramBot(String token, TelegramApi telegramApi) {
+    public TelegramBot(String token, String atUsername, TelegramApi telegramApi) {
         this.token = token;
+        this.atUsername = atUsername;
         this.telegramApi = telegramApi;
     }
 
@@ -111,5 +116,10 @@ public class TelegramBot {
     @NonNull
     public String getToken() {
         return this.token;
+    }
+
+    @NonNull
+    public String getAtUsername() {
+        return atUsername;
     }
 }

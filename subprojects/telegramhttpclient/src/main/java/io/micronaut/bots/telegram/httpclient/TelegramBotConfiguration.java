@@ -26,4 +26,7 @@ public interface TelegramBotConfiguration extends Named, Toggleable {
 
     @Nonnull
     String getToken();
+
+    @Nonnull
+    String getAtUsername();
 }

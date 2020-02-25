@@ -26,6 +26,17 @@ import java.util.Optional;
 public interface CommandHandler {
     String COMMAND_PREFFIX = "/";
 
+
+    @Nullable
+    static String parseType(@NonNull Update update) {
+        if (update.getEditedMessage()!=null) {
+            return update.getEditedMessage().getChat().getType();
+        } else if (update.getMessage() != null) {
+            return update.getMessage().getChat().getType();
+        }
+        return null;
+    }
+
     <T extends Send> Optional<T> handle(@NonNull Update update);
 
     @Nullable
