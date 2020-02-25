@@ -15,15 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.telegram.httpclient;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.telegram.core.Send;
-import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.core.naming.Named;
+import io.micronaut.core.util.Toggleable;
 
-import java.util.Optional;
+import javax.annotation.Nonnull;
 
-public interface UpdateDispatcher {
-    Optional<Send> dispatch(TelegramBot bot, @NonNull Update update);
+public interface TelegramBotConfiguration extends Named, Toggleable {
+
+    @Nonnull
+    String getToken();
 }

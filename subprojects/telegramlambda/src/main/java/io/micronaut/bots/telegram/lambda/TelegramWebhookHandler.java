@@ -25,22 +25,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
 import io.micronaut.bots.telegram.dispatcher.UpdateDispatcher;
+import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import io.micronaut.function.aws.MicronautRequestHandler;
+import io.micronaut.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     private static final Logger LOG = LoggerFactory.getLogger(TelegramWebhookHandler.class);
-    private static final String ENV_TOKEN = "TOKEN";
     public static final String APPLICATION_JSON = "application/json";
     public static final String CONTENT_TYPE = "Content-Type";
     public static final String TEXT_PLAIN = "text/plain";
+    public static final String PATH_START = "/";
 
     @Inject
     private ObjectMapper objectMapper;
@@ -48,50 +51,62 @@ public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayPr
     @Inject
     private UpdateDispatcher updateDispatcher;
 
+    @Inject
+    Collection<TelegramBot> telegramBots;
+
     public TelegramWebhookHandler() {
 
     }
 
     @Override
     public APIGatewayProxyResponseEvent execute(APIGatewayProxyRequestEvent input) {
+
         LOG.info("body is " + input.getBody());
-
-
-        String path = input.getPath();
+        final String path = input.getPath();
         APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent = new APIGatewayProxyResponseEvent();
-        if (!(("/" + System.getenv(ENV_TOKEN)).equals(path))) {
-            apiGatewayProxyResponseEvent.setStatusCode(401);
+
+        if (telegramBots.stream().noneMatch(bot -> (PATH_START + bot.getToken()).equals(path))) {
+            apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.UNAUTHORIZED.getCode());
             return apiGatewayProxyResponseEvent;
         }
         Map<String, String> headers = new HashMap<>();
 
         try {
-            if (input.getBody() != null && !input.getBody().trim().isEmpty()) {
-                Update update = objectMapper.readValue(input.getBody(), Update.class);
+            Optional<TelegramBot> telegramBotOptional = telegramBots.stream().filter(bot -> (PATH_START + bot.getToken()).equals(path)).findFirst();
+            if (telegramBotOptional.isPresent()) {
+                TelegramBot telegramBot = telegramBotOptional.get();
 
-                Optional<Send> message = updateDispatcher.dispatch(update);
-                if (message.isPresent()) {
-                    Send send = message.get();
-                    try {
-                        String json  = objectMapper.writeValueAsString(send);
-                        LOG.info("response json is:" + json);
-                        headers.put(CONTENT_TYPE, APPLICATION_JSON);
-                        apiGatewayProxyResponseEvent.setBody(json);
-                        apiGatewayProxyResponseEvent.setStatusCode(200);
-                    } catch (JsonProcessingException e) {
-                        LOG.info("json proccession error marshalling the send message " + e.getMessage());
-                        headers.put(CONTENT_TYPE, TEXT_PLAIN);
-                        apiGatewayProxyResponseEvent.setBody("error converting message to json string");
-                        apiGatewayProxyResponseEvent.setStatusCode(400);
+                if (input.getBody() != null && !input.getBody().trim().isEmpty()) {
+                    Update update = objectMapper.readValue(input.getBody(), Update.class);
+                    Optional<Send> message = updateDispatcher.dispatch(telegramBot, update);
+                    if (message.isPresent()) {
+                        Send send = message.get();
+                        try {
+                            String json  = objectMapper.writeValueAsString(send);
+                            LOG.info("response json is:" + json);
+                            headers.put(CONTENT_TYPE, APPLICATION_JSON);
+                            apiGatewayProxyResponseEvent.setBody(json);
+                            apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.OK.getCode());
+                        } catch (JsonProcessingException e) {
+                            LOG.info("json proccession error marshalling the send message " + e.getMessage());
+                            headers.put(CONTENT_TYPE, TEXT_PLAIN);
+                            apiGatewayProxyResponseEvent.setBody("error converting message to json string");
+                            apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.BAD_REQUEST.getCode());
+                        }
+                    } else {
+                        apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.OK.getCode());
                     }
                 } else {
-                    apiGatewayProxyResponseEvent.setStatusCode(200);
+                    LOG.warn("body is null");
+                    headers.put(CONTENT_TYPE, TEXT_PLAIN);
+                    apiGatewayProxyResponseEvent.setBody("body is null");
+                    apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.BAD_REQUEST.getCode());
                 }
             } else {
-                LOG.warn("body is null");
+                LOG.warn("telegram bot not found");
                 headers.put(CONTENT_TYPE, TEXT_PLAIN);
-                apiGatewayProxyResponseEvent.setBody("body is null");
-                apiGatewayProxyResponseEvent.setStatusCode(400);
+                apiGatewayProxyResponseEvent.setBody("telegram bot not found");
+                apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.BAD_REQUEST.getCode());
             }
             apiGatewayProxyResponseEvent.setHeaders(headers);
             return apiGatewayProxyResponseEvent;

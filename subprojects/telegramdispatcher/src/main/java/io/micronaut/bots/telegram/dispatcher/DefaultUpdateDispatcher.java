@@ -21,6 +21,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.SendMessage;
 import io.micronaut.bots.telegram.core.Update;
+import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.inject.qualifiers.Qualifiers;
 
@@ -36,7 +37,7 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
         this.applicationContext = applicationContext;
     }
 
-    public Optional<Send> dispatch(@NonNull Update update) {
+    public Optional<Send> dispatch(TelegramBot telegramBot, @NonNull Update update) {
         String text = CommandHandler.parseText(update);
         if (text != null) {
             if (applicationContext.containsBean(CommandHandler.class, Qualifiers.byName(text))) {

@@ -15,15 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.telegram.httpclient;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.telegram.core.Send;
-import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.context.annotation.EachBean;
+import io.micronaut.context.annotation.Factory;
 
-import java.util.Optional;
+@Factory
+public class TelegramBotFactory {
 
-public interface UpdateDispatcher {
-    Optional<Send> dispatch(TelegramBot bot, @NonNull Update update);
+    @EachBean(TelegramBotConfiguration.class)
+    public TelegramBot buildTelegramBot(TelegramBotConfiguration configuration,
+                                        TelegramApi telegramApi) {
+        return new TelegramBot(configuration.getToken(), telegramApi);
+    }
 }
