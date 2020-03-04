@@ -34,7 +34,7 @@ import java.util.Optional;
 public abstract class InlineKeyboardHandler implements CommandHandler {
     private static final Logger LOG = LoggerFactory.getLogger(InlineKeyboardHandler.class);
 
-    private final ObjectMapper objectMapper;
+    protected final ObjectMapper objectMapper;
     protected final UpdateParser updateParser;
 
     protected InlineKeyboardHandler(ObjectMapper objectMapper,

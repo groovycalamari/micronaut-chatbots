@@ -37,8 +37,8 @@ import java.util.Optional;
 public class FileCommandHandler implements CommandHandler {
     private static final Logger LOG = LoggerFactory.getLogger(FileCommandHandler.class);
 
-    private final ParseMode parseMode;
-    private final String path;
+    protected final ParseMode parseMode;
+    protected final String path;
 
     public FileCommandHandler(ParseMode parseMode, String path) {
         this.parseMode = parseMode;

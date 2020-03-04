@@ -41,8 +41,8 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
     public static final String SPACE = " ";
     public static final String DEFAULT_MESSAGE = "I don't understand. Please type /help";
 
-    private final ApplicationContext applicationContext;
-    private final UpdateParser updateParser;
+    protected final ApplicationContext applicationContext;
+    protected final UpdateParser updateParser;
 
     public DefaultUpdateDispatcher(ApplicationContext applicationContext,
                                          UpdateParser updateParser) {
