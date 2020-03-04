@@ -23,13 +23,18 @@ import io.micronaut.context.annotation.Factory;
 @Factory
 public class FileCommandFactory {
 
+    private final UpdateParser updateParser;
+
+    public FileCommandFactory(UpdateParser updateParser) {
+        this.updateParser = updateParser;
+    }
+
     @EachBean(TelegramCommandConfiguration.class)
     public FileCommandHandler buildMarkdownFileCommandHandler(TelegramCommandConfiguration configuration) {
 
         if (configuration.getParseMode() != null && configuration.getPath() != null) {
-            return new FileCommandHandler(configuration.getParseMode(), configuration.getPath());
+            return new FileCommandHandler(updateParser, configuration.getParseMode(), configuration.getPath());
         }
-
         return null;
     }
 

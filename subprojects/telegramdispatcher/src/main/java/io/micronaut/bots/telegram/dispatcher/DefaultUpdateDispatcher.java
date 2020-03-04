@@ -37,7 +37,6 @@ import java.util.Optional;
 @Singleton
 public class DefaultUpdateDispatcher implements UpdateDispatcher {
     private static final Logger LOG = LoggerFactory.getLogger(DefaultUpdateDispatcher.class);
-    public static final String COMMAND_PREFIX = "/";
     public static final String SPACE = " ";
     public static final String DEFAULT_MESSAGE = "I don't understand. Please type /help";
 
@@ -54,7 +53,7 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
     public Optional<Send> dispatch(@NonNull TelegramBot telegramBot, @NonNull Update update) {
         handleCallbackQuery(telegramBot, update);
         if (shouldHandleMessage(telegramBot, update)) {
-            Optional<CommandHandler> handler = parseCommandHandler(update);
+            Optional<CommandHandler> handler = parseCommandHandler(telegramBot, update);
             if (handler.isPresent()) {
                 return handler.get().handle(telegramBot, update);
             }
@@ -63,8 +62,8 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
         return Optional.empty();
     }
 
-    protected Optional<CommandHandler> parseCommandHandler(@NonNull Update update) {
-        Optional<String> commandOptional = parseCommandAtUpdate(update);
+    protected Optional<CommandHandler> parseCommandHandler(@NonNull TelegramBot telegramBot, @NonNull Update update) {
+        Optional<String> commandOptional = parseCommandAtUpdate(telegramBot, update);
         if (commandOptional.isPresent()) {
             String command = commandOptional.get();
             if (applicationContext.containsBean(CommandHandler.class, Qualifiers.byName(command))) {
@@ -106,8 +105,8 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
         }
     }
 
-    protected Optional<String> parseCommandAtUpdate(@NonNull Update update) {
-        String commandText = updateParser.parseText(update).orElse(null);
+    protected Optional<String> parseCommandAtUpdate(@NonNull TelegramBot telegramBot, @NonNull Update update) {
+        String commandText = updateParser.parseTextWithoutBotName(telegramBot, update).orElse(null);
         return parseCommand(commandText);
     }
 
@@ -121,7 +120,7 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
                 commandText = arr[0];
             }
         }
-        if (commandText.startsWith(COMMAND_PREFIX)) {
+        if (commandText.startsWith(CommandHandler.COMMAND_PREFIX)) {
             return Optional.of(commandText.substring(1));
         }
         return Optional.empty();
@@ -129,24 +128,13 @@ public class DefaultUpdateDispatcher implements UpdateDispatcher {
 
     protected Optional<Send> defaultHandleUpdateNotProcessedByCommands(@NonNull TelegramBot telegramBot,
                                                                        @NonNull Update update) {
-        Integer chatId = CommandHandler.parseChatId(update);
-        if(chatId !=null) {
-            return Optional.of(defaultMessage(chatId));
-        }
-        return Optional.empty();
+        Optional<Chat> chatOptional = updateParser.parseChat(update);
+        return chatOptional.map(chat -> defaultMessage(chat.getId()));
     }
 
     protected Optional<Send> handleUpdateNotProcessedByCommands(@NonNull TelegramBot telegramBot,
                                                                 Update update) {
-        Optional<Send> messageOptional = defaultHandleUpdateNotProcessedByCommands(telegramBot, update);
-
-        if (shouldHandleMessage(telegramBot, update)) {
-            String text = updateParser.parseText(update).orElse(null);
-            if (LOG.isInfoEnabled()) {
-                LOG.info("text parsed: {}", text);
-            }
-        }
-        return messageOptional;
+        return defaultHandleUpdateNotProcessedByCommands(telegramBot, update);
     }
 
     protected SendMessage defaultMessage(Integer chatId) {

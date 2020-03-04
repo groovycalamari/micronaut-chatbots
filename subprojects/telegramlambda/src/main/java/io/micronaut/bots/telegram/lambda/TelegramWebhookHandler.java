@@ -55,7 +55,6 @@ public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayPr
     Collection<TelegramBot> telegramBots;
 
     public TelegramWebhookHandler() {
-
     }
 
     @Override

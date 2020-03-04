@@ -20,6 +20,7 @@ package io.micronaut.bots.telegram.dispatcher;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.telegram.core.Chat;
 import io.micronaut.bots.telegram.core.Update;
+import io.micronaut.bots.telegram.httpclient.TelegramBot;
 
 import java.util.Optional;
 
@@ -28,5 +29,7 @@ public interface UpdateParser {
 
     Optional<String> parseText(@NonNull Update update);
 
-    Optional<Integer> parseUserid(Update update);
+    Optional<String> parseTextWithoutBotName(@NonNull TelegramBot telegramBot, @NonNull Update update);
+
+    Optional<Integer> parseUserId(Update update);
 }

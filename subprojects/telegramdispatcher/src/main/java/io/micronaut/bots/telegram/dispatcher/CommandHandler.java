@@ -18,7 +18,6 @@
 package io.micronaut.bots.telegram.dispatcher;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
 import io.micronaut.bots.telegram.httpclient.TelegramBot;
@@ -26,38 +25,8 @@ import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import java.util.Optional;
 
 public interface CommandHandler {
-    String COMMAND_PREFFIX = "/";
-
-
-    @Nullable
-    static String parseType(@NonNull Update update) {
-        if (update.getEditedMessage()!=null) {
-            return update.getEditedMessage().getChat().getType();
-        } else if (update.getMessage() != null) {
-            return update.getMessage().getChat().getType();
-        }
-        return null;
-    }
+    String COMMAND_PREFIX = "/";
 
     <T extends Send> Optional<T> handle(@NonNull TelegramBot telegramBot, @NonNull Update update);
 
-    @Nullable
-    static String parseText(@NonNull Update update) {
-        if (update.getEditedMessage()!=null) {
-            return update.getEditedMessage().getText();
-        } else if (update.getMessage() != null) {
-            return update.getMessage().getText();
-        }
-        return null;
-    }
-
-    @Nullable
-    static Integer parseChatId(@NonNull Update update) {
-        if (update.getEditedMessage()!=null) {
-            return update.getEditedMessage().getChat().getId();
-        } else if (update.getMessage() != null) {
-            return update.getMessage().getChat().getId();
-        }
-        return null;
-    }
 }

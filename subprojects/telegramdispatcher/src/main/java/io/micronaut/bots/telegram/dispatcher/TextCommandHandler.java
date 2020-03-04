@@ -18,6 +18,7 @@
 package io.micronaut.bots.telegram.dispatcher;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import io.micronaut.bots.telegram.core.Chat;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.SendMessage;
 import io.micronaut.bots.telegram.core.Update;
@@ -26,6 +27,13 @@ import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import java.util.Optional;
 
 public abstract class TextCommandHandler implements CommandHandler {
+
+    protected final UpdateParser updateParser;
+
+    public TextCommandHandler(UpdateParser updateParser) {
+        this.updateParser = updateParser;
+    }
+
     @NonNull
     protected abstract Optional<String> replyUpdate(@NonNull TelegramBot telegramBot, @NonNull Update update);
 
@@ -35,13 +43,11 @@ public abstract class TextCommandHandler implements CommandHandler {
         if (!textOpt.isPresent()) {
             return Optional.empty();
         }
-        Integer chatId = CommandHandler.parseChatId(update);
-        if (chatId == null) {
-            return Optional.empty();
-        }
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(chatId);
-        sendMessage.setText(textOpt.get());
-        return (Optional) Optional.of(sendMessage);
+        return (Optional) updateParser.parseChat(update).map(Chat::getId).map(chatId -> {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId);
+            sendMessage.setText(textOpt.get());
+            return sendMessage;
+        });
     }
 }

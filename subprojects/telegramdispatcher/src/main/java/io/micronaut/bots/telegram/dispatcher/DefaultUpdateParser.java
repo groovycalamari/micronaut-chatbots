@@ -20,6 +20,8 @@ package io.micronaut.bots.telegram.dispatcher;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.telegram.core.Chat;
 import io.micronaut.bots.telegram.core.Update;
+import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.core.util.StringUtils;
 
 import javax.inject.Singleton;
 import java.util.Optional;
@@ -56,7 +58,18 @@ public class DefaultUpdateParser implements UpdateParser {
     }
 
     @Override
-    public Optional<Integer> parseUserid(Update update) {
+    public Optional<String> parseTextWithoutBotName(@NonNull TelegramBot telegramBot, @NonNull Update update) {
+        Optional<String> textOptional = parseText(update);
+        if (textOptional.isPresent()) {
+            String text = textOptional.get();
+            return Optional.of(text.replaceAll(telegramBot.getAtUsername(), "").trim());
+        }
+        return Optional.empty();
+    }
+
+
+    @Override
+    public Optional<Integer> parseUserId(Update update) {
         if (update.getCallbackQuery() != null) {
             return Optional.of(update.getCallbackQuery().getFrom().getId());
         }

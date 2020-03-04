@@ -18,6 +18,7 @@
 package io.micronaut.bots.telegram.dispatcher;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import io.micronaut.bots.telegram.core.Chat;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.SendMessage;
 import io.micronaut.bots.telegram.core.Update;
@@ -37,10 +38,14 @@ import java.util.Optional;
 public class FileCommandHandler implements CommandHandler {
     private static final Logger LOG = LoggerFactory.getLogger(FileCommandHandler.class);
 
+    protected final UpdateParser updateParser;
     protected final ParseMode parseMode;
     protected final String path;
 
-    public FileCommandHandler(ParseMode parseMode, String path) {
+    public FileCommandHandler(UpdateParser updateParser,
+                              ParseMode parseMode,
+                              String path) {
+        this.updateParser = updateParser;
         this.parseMode = parseMode;
         this.path = path;
     }
@@ -51,7 +56,7 @@ public class FileCommandHandler implements CommandHandler {
         if (!textOpt.isPresent()) {
             return Optional.empty();
         }
-        Integer chatId = CommandHandler.parseChatId(update);
+        Integer chatId = updateParser.parseChat(update).map(Chat::getId).orElse(null);
         if (chatId == null) {
             return Optional.empty();
         }
