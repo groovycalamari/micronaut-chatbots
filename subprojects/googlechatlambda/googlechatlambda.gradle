@@ -54,4 +54,5 @@ dependencies {
     testImplementation("org.spockframework:spock-core") {
         exclude module: 'groovy-all'
     }
+    testImplementation "io.micronaut:micronaut-inject-groovy"
 }

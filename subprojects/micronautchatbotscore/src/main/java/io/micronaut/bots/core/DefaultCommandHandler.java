@@ -15,15 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.core;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.core.ChatBot;
-import io.micronaut.bots.core.ChatBotMessageReceive;
-import io.micronaut.bots.core.ChatBotMessageParser;
-import io.micronaut.bots.core.DefaultUpdateDispatcher;
-import io.micronaut.bots.core.MessageComposer;
-import io.micronaut.bots.core.TextCommandHandler;
 import io.micronaut.context.annotation.Secondary;
 
 import javax.inject.Named;
@@ -33,10 +27,10 @@ import java.util.Optional;
 @Named(DefaultUpdateDispatcher.DEFAULT_COMMAND)
 @Secondary
 @Singleton
-public class TelegramDefaultCommandHandler extends TextCommandHandler {
+public class DefaultCommandHandler extends TextCommandHandler {
     public static final String DEFAULT_MESSAGE = "I don't understand. Please type /help";
 
-    public TelegramDefaultCommandHandler(MessageComposer messageComposer) {
+    public DefaultCommandHandler(MessageComposer messageComposer) {
         super(messageComposer);
     }
 

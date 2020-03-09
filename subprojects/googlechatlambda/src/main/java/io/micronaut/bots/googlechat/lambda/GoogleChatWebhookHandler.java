@@ -105,6 +105,7 @@ public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGateway
                 GoogleChatBot bot = botOptional.get();
                 if (input.getBody() != null && !input.getBody().trim().isEmpty()) {
                     Event update = objectMapper.readValue(input.getBody(), Event.class);
+                    LOG.info("dispatching message to bot {}", bot.getAtUsername());
                     Optional<ChatBotMessageSend> message = messageDispatcher.dispatch(bot, update);
                     if (message.isPresent()) {
                         try {
