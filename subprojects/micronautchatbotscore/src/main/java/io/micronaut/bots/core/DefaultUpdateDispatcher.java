@@ -51,13 +51,21 @@ public class DefaultUpdateDispatcher implements ChatBotMessageDispatcher {
     @Override
     public Optional<ChatBotMessageSend> dispatch(@NonNull ChatBot chatBot, @NonNull ChatBotMessageReceive messageReceive) {
         if (shouldHandleMessage(chatBot, messageReceive)) {
-            Optional<CommandHandler> handler = parseCommandHandler(chatBot, messageReceive);
-            if (handler.isEmpty()) {
-                handler = parseHandlerFromCommand(DEFAULT_COMMAND);
+            Optional<CommandHandler> handlerOptional = parseCommandHandler(chatBot, messageReceive);
+            if (handlerOptional.isEmpty()) {
+                handlerOptional = parseHandlerFromCommand(DEFAULT_COMMAND);
             }
-            if (handler.isPresent()) {
-                return handler.get().handle(chatBot, messageReceive);
+            if (handlerOptional.isPresent()) {
+                CommandHandler handler = handlerOptional.get();
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("handling message with : {}", handler.getClass().getSimpleName());
+                }
+                return handler.handle(chatBot, messageReceive);
             }
+        }
+
+        if (LOG.isInfoEnabled()) {
+            LOG.info("No handler found");
         }
 
         return Optional.empty();
@@ -80,9 +88,16 @@ public class DefaultUpdateDispatcher implements ChatBotMessageDispatcher {
         Optional<String> commandOptional = parseCommandAtUpdate(chatBot, messageReceive);
         if (commandOptional.isPresent()) {
             String command = commandOptional.get();
+            if (LOG.isInfoEnabled()) {
+                LOG.info("command parsed: {}", command);
+            }
             Optional<CommandHandler> commandHandlerOptional = parseHandlerFromCommand(command);
             if (commandHandlerOptional.isPresent()) {
                 return commandHandlerOptional;
+            } else {
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("no command handler found for command {}", command);
+                }
             }
         }
         Optional<String> textOptional = messageParser.parseText(messageReceive);
@@ -94,6 +109,10 @@ public class DefaultUpdateDispatcher implements ChatBotMessageDispatcher {
             for (MatcherCommandHandler handler : matcherCommandHandlers) {
                 if (handler.matches(text)) {
                     return Optional.of(handler);
+                } else {
+                    if (LOG.isInfoEnabled()) {
+                        LOG.info("handler {} does not match text {}", handler.getClass().getSimpleName(), text);
+                    }
                 }
             }
         }
