@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.core;
 
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
@@ -24,13 +24,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @EachProperty("telegram.bots.commands")
-public class TelegramCommandConfigurationProperties implements TelegramCommandConfiguration {
+public class BotCommandConfigurationProperties implements BotCommandConfiguration {
     private String path;
     private ParseMode parseMode;
 
     private final String name;
 
-    public TelegramCommandConfigurationProperties(@Parameter String name) {
+    public BotCommandConfigurationProperties(@Parameter String name) {
         this.name = name;
     }
 

@@ -15,19 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.core;
 
-public enum  ParseMode {
-    HTML("HTML"), MARKDOWN("Markdown");
-
-    private String value;
-
-    ParseMode(String value) {
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return this.value;
-    }
+public interface ChatBotMessageReceive {
 }

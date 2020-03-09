@@ -17,6 +17,7 @@
  */
 package io.micronaut.bots.telegram.httpclient;
 
+import io.micronaut.bots.core.ChatBot;
 import io.micronaut.bots.telegram.core.AnswerCallbackQuery;
 import io.micronaut.bots.telegram.core.ForwardMessage;
 import io.micronaut.bots.telegram.core.GetUserProfilePhotos;
@@ -39,7 +40,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class TelegramBot {
+public class TelegramBot implements ChatBot {
 
     @NotBlank
     @NonNull
@@ -118,6 +119,7 @@ public class TelegramBot {
         return this.token;
     }
 
+    @Override
     @NonNull
     public String getAtUsername() {
         return atUsername;

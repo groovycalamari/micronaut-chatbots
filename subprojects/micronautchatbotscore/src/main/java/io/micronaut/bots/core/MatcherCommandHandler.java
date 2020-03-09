@@ -15,17 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.core;
 
-import io.micronaut.core.naming.Named;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import javax.validation.constraints.NotBlank;
 
-import javax.annotation.Nullable;
+public interface MatcherCommandHandler extends CommandHandler {
 
-public interface TelegramCommandConfiguration extends Named {
+    boolean matches(@NonNull @NotBlank String text);
 
-    @Nullable
-    String getPath();
-
-    @Nullable
-    ParseMode getParseMode();
 }

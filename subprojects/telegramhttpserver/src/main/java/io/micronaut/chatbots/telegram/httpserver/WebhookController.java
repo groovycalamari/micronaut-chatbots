@@ -17,9 +17,10 @@
  */
 package io.micronaut.chatbots.telegram.httpserver;
 
+import io.micronaut.bots.core.ChatBotMessageDispatcher;
+import io.micronaut.bots.core.ChatBotMessageSend;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.dispatcher.UpdateDispatcher;
 import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Post;
@@ -39,11 +40,11 @@ public class WebhookController {
     private static final Logger LOG = LoggerFactory.getLogger(WebhookController.class);
 
     private final Map<String, TelegramBot> configuration;
-    private final UpdateDispatcher updateDispatcher;
+    private final ChatBotMessageDispatcher messageDispatcher;
 
     public WebhookController(Collection<TelegramBot> telegramBots,
-                             UpdateDispatcher updateDispatcher) {
-        this.updateDispatcher = updateDispatcher;
+                             ChatBotMessageDispatcher messageDispatcher) {
+        this.messageDispatcher = messageDispatcher;
         this.configuration = new HashMap<>();
 
         for (TelegramBot bot : telegramBots) {
@@ -57,11 +58,15 @@ public class WebhookController {
         if (!configuration.containsKey(token)) {
             return HttpResponse.unauthorized();
         }
-        Optional<Send> opt = updateDispatcher.dispatch(configuration.get(token), update);
 
-        if (!opt.isPresent()) {
-            return HttpResponse.ok();
+        Optional<ChatBotMessageSend> message = messageDispatcher.dispatch(configuration.get(token), update);
+        if (message.isPresent()) {
+            ChatBotMessageSend chatBotResponse = message.get();
+            if (chatBotResponse instanceof Send) {
+                Send send = ((Send) chatBotResponse);
+                return HttpResponse.ok(send);
+            }
         }
-        return HttpResponse.ok(opt.get());
+        return HttpResponse.ok();
     }
 }

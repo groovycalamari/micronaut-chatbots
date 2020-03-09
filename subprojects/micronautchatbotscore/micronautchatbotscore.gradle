@@ -42,10 +42,10 @@ dependencies {
     implementation "io.micronaut:micronaut-inject"
     implementation "io.micronaut:micronaut-validation"
     implementation "com.fasterxml.jackson.core:jackson-annotations"
+    api 'com.github.spotbugs:spotbugs-annotations:3.1.12'
 
     testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation("org.spockframework:spock-core") {
         exclude module: 'groovy-all'
     }
-    api project(":micronautchatbotscore")
 }

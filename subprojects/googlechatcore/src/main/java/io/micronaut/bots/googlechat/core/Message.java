@@ -15,15 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.googlechat.core;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.telegram.core.Send;
-import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.core.annotation.Introspected;
 
-import java.util.Optional;
+import java.util.List;
 
-public interface UpdateDispatcher {
-    Optional<Send> dispatch(@NonNull TelegramBot bot, @NonNull Update update);
+@Introspected
+public class Message {
+
+    private String name;
+    private User sender;
+    private String createTime;
+    private String text;
+    private Thread thread;
+    private List<Annotation> annotations;
+    private String argumentText;
+
 }

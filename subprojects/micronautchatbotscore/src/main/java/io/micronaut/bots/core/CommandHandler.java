@@ -15,18 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.core;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.telegram.core.Send;
-import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.core.order.Ordered;
 
 import java.util.Optional;
 
-public interface CommandHandler {
+public interface CommandHandler extends Ordered {
     String COMMAND_PREFIX = "/";
 
-    <T extends Send> Optional<T> handle(@NonNull TelegramBot telegramBot, @NonNull Update update);
+    <T extends ChatBotMessageSend> Optional<T> handle(@NonNull ChatBot chatBot,
+                                                      @NonNull ChatBotMessageReceive update);
 
 }

@@ -20,9 +20,12 @@ package io.micronaut.bots.telegram.dispatcher;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.telegram.core.Chat;
+import io.micronaut.bots.core.ChatBot;
+import io.micronaut.bots.core.ChatBotMessageReceive;
+import io.micronaut.bots.core.ChatBotMessageSend;
+import io.micronaut.bots.core.CommandHandler;
+import io.micronaut.bots.core.MessageComposer;
 import io.micronaut.bots.telegram.core.InlineKeyboardMarkup;
-import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.SendMessage;
 import io.micronaut.bots.telegram.core.Update;
 import io.micronaut.bots.telegram.httpclient.TelegramBot;
@@ -35,29 +38,41 @@ public abstract class InlineKeyboardHandler implements CommandHandler {
     private static final Logger LOG = LoggerFactory.getLogger(InlineKeyboardHandler.class);
 
     protected final ObjectMapper objectMapper;
-    protected final UpdateParser updateParser;
+    protected final MessageComposer messageComposer;
 
     protected InlineKeyboardHandler(ObjectMapper objectMapper,
-                                    UpdateParser updateParser) {
+                                    MessageComposer messageComposer) {
         this.objectMapper = objectMapper;
-        this.updateParser = updateParser;
+        this.messageComposer = messageComposer;
     }
 
     @Override
-    public <T extends Send> Optional<T> handle(@NonNull TelegramBot telegramBot, @NonNull Update update) {
-        SendMessage sendMessage = new SendMessage();
-        Integer chatId = updateParser.parseChat(update).map(Chat::getId).orElse(null);
-        sendMessage.setChatId(chatId);
-        sendMessage.setText(messageText(telegramBot, update));
+    public <T extends ChatBotMessageSend> Optional<T> handle(@NonNull ChatBot bot,
+                                                             @NonNull ChatBotMessageReceive chatUpdate) {
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = createInlineKeyboardMarkup(telegramBot, update);
-        Optional<String> json = serializeInlineKeyboardMarkup(inlineKeyboardMarkup);
-        if (json.isPresent()) {
-            LOG.error("No keyboard created");
+
+        if (!(chatUpdate instanceof Update) || !(bot instanceof TelegramBot)) {
+            return Optional.empty();
         }
-        json.ifPresent(sendMessage::setReplyMarkup);
+        TelegramBot telegramBot = (TelegramBot) bot;
+        Update update = (Update) chatUpdate;
+        String text = messageText(telegramBot, update);
+        Optional<ChatBotMessageSend> chatBotResponseOptional = messageComposer.compose(text, chatUpdate);
+        if (chatBotResponseOptional.isPresent()) {
+            ChatBotMessageSend chatBotResponse = chatBotResponseOptional.get();
+            if (chatBotResponse instanceof SendMessage) {
+                SendMessage sendMessage = (SendMessage) chatBotResponse;
+                InlineKeyboardMarkup inlineKeyboardMarkup = createInlineKeyboardMarkup(telegramBot, update);
+                Optional<String> json = serializeInlineKeyboardMarkup(inlineKeyboardMarkup);
+                if (json.isPresent()) {
+                    LOG.error("No keyboard created");
+                }
+                json.ifPresent(sendMessage::setReplyMarkup);
 
-        return (Optional) Optional.of(sendMessage);
+                return (Optional) Optional.of(sendMessage);
+            }
+        }
+        return Optional.empty();
     }
 
     @NonNull

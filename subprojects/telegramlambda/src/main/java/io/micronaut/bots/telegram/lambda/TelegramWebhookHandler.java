@@ -22,9 +22,10 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.micronaut.bots.core.ChatBotMessageDispatcher;
+import io.micronaut.bots.core.ChatBotMessageSend;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.dispatcher.UpdateDispatcher;
 import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import io.micronaut.function.aws.MicronautRequestHandler;
 import io.micronaut.http.HttpStatus;
@@ -49,7 +50,7 @@ public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayPr
     private ObjectMapper objectMapper;
 
     @Inject
-    private UpdateDispatcher updateDispatcher;
+    private ChatBotMessageDispatcher messageDispatcher;
 
     @Inject
     Collection<TelegramBot> telegramBots;
@@ -78,20 +79,25 @@ public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayPr
 
                 if (input.getBody() != null && !input.getBody().trim().isEmpty()) {
                     Update update = objectMapper.readValue(input.getBody(), Update.class);
-                    Optional<Send> message = updateDispatcher.dispatch(telegramBot, update);
+                    Optional<ChatBotMessageSend> message = messageDispatcher.dispatch(telegramBot, update);
                     if (message.isPresent()) {
-                        Send send = message.get();
-                        try {
-                            String json  = objectMapper.writeValueAsString(send);
-                            LOG.info("response json is:" + json);
-                            headers.put(CONTENT_TYPE, APPLICATION_JSON);
-                            apiGatewayProxyResponseEvent.setBody(json);
+                        ChatBotMessageSend chatBotResponse = message.get();
+                        if (chatBotResponse instanceof Send) {
+                            Send send = ((Send) chatBotResponse);
+                            try {
+                                String json  = objectMapper.writeValueAsString(send);
+                                LOG.info("response json is:" + json);
+                                headers.put(CONTENT_TYPE, APPLICATION_JSON);
+                                apiGatewayProxyResponseEvent.setBody(json);
+                                apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.OK.getCode());
+                            } catch (JsonProcessingException e) {
+                                LOG.info("json proccession error marshalling the send message " + e.getMessage());
+                                headers.put(CONTENT_TYPE, TEXT_PLAIN);
+                                apiGatewayProxyResponseEvent.setBody("error converting message to json string");
+                                apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.BAD_REQUEST.getCode());
+                            }
+                        } else {
                             apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.OK.getCode());
-                        } catch (JsonProcessingException e) {
-                            LOG.info("json proccession error marshalling the send message " + e.getMessage());
-                            headers.put(CONTENT_TYPE, TEXT_PLAIN);
-                            apiGatewayProxyResponseEvent.setBody("error converting message to json string");
-                            apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.BAD_REQUEST.getCode());
                         }
                     } else {
                         apiGatewayProxyResponseEvent.setStatusCode(HttpStatus.OK.getCode());

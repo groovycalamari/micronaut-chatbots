@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.core;
 
 import io.micronaut.context.annotation.EachBean;
 import io.micronaut.context.annotation.Factory;
@@ -23,17 +23,20 @@ import io.micronaut.context.annotation.Factory;
 @Factory
 public class FileCommandFactory {
 
-    private final UpdateParser updateParser;
+    private final ChatBotMessageParser messageParser;
+    private final MessageComposer messageComposer;
 
-    public FileCommandFactory(UpdateParser updateParser) {
-        this.updateParser = updateParser;
+    public FileCommandFactory(ChatBotMessageParser messageParser,
+                              MessageComposer messageComposer) {
+        this.messageParser = messageParser;
+        this.messageComposer = messageComposer;
     }
 
-    @EachBean(TelegramCommandConfiguration.class)
-    public FileCommandHandler buildMarkdownFileCommandHandler(TelegramCommandConfiguration configuration) {
+    @EachBean(BotCommandConfiguration.class)
+    public FileCommandHandler buildMarkdownFileCommandHandler(BotCommandConfiguration configuration) {
 
         if (configuration.getParseMode() != null && configuration.getPath() != null) {
-            return new FileCommandHandler(updateParser, configuration.getParseMode(), configuration.getPath());
+            return new FileCommandHandler(configuration.getParseMode(), configuration.getPath(), messageComposer);
         }
         return null;
     }

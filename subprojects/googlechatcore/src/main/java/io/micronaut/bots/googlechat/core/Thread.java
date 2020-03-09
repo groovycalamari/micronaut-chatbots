@@ -15,21 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.telegram.dispatcher;
+package io.micronaut.bots.googlechat.core;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
-import io.micronaut.bots.telegram.core.Chat;
-import io.micronaut.bots.telegram.core.Update;
-import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.core.annotation.Introspected;
 
-import java.util.Optional;
-
-public interface UpdateParser {
-    Optional<Chat> parseChat(@NonNull Update update);
-
-    Optional<String> parseText(@NonNull Update update);
-
-    Optional<String> parseTextWithoutBotName(@NonNull TelegramBot telegramBot, @NonNull Update update);
-
-    Optional<Integer> parseUserId(Update update);
+@Introspected
+public class Thread {
+    private String name;
 }

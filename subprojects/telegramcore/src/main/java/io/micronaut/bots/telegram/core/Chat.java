@@ -19,6 +19,7 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.micronaut.bots.core.ChatBotSpace;
 import io.micronaut.core.annotation.Introspected;
 
 import javax.annotation.Nonnull;
@@ -31,7 +32,7 @@ import javax.validation.constraints.Pattern;
  */
 @Introspected
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Chat {
+public class Chat implements ChatBotSpace {
 
     /**
      * Unique identifier for this chat. This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
