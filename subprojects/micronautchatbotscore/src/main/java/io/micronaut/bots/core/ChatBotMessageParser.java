@@ -19,6 +19,7 @@ package io.micronaut.bots.core;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 public interface ChatBotMessageParser {
@@ -28,5 +29,5 @@ public interface ChatBotMessageParser {
 
     Optional<String> parseTextWithoutBotName(@NonNull ChatBot telegramBot, @NonNull ChatBotMessageReceive messageReceive);
 
-    Optional<Integer> parseUserId(ChatBotMessageReceive messageReceive);
+    Optional<Serializable> parseUserId(ChatBotMessageReceive messageReceive);
 }

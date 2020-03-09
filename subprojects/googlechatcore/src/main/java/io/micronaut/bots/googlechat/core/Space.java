@@ -17,10 +17,11 @@
  */
 package io.micronaut.bots.googlechat.core;
 
+import io.micronaut.bots.core.ChatBotSpace;
 import io.micronaut.core.annotation.Introspected;
 
 @Introspected
-public class Space {
+public class Space implements ChatBotSpace {
     private String name;
     private String displayName;
     private String type;

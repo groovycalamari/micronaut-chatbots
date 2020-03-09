@@ -26,6 +26,7 @@ import io.micronaut.bots.telegram.core.Chat;
 import io.micronaut.bots.telegram.core.Update;
 
 import javax.inject.Singleton;
+import java.io.Serializable;
 import java.util.Optional;
 
 @Singleton
@@ -109,7 +110,7 @@ public class TelegramChatBotMessageParser implements ChatBotMessageParser {
 
 
     @Override
-    public Optional<Integer> parseUserId(@NonNull ChatBotMessageReceive chatBotMessageReceive) {
+    public Optional<Serializable> parseUserId(@NonNull ChatBotMessageReceive chatBotMessageReceive) {
         if (chatBotMessageReceive instanceof Update) {
             Update update = (Update) chatBotMessageReceive;
             if (update.getCallbackQuery() != null) {
