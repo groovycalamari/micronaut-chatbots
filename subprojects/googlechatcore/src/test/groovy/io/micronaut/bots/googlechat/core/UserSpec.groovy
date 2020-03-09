@@ -15,29 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.bots.googlechat.core;
+package io.micronaut.bots.googlechat.core
 
-import io.micronaut.core.annotation.Introspected;
+import spock.lang.Specification
 
-@Introspected
-public class Thread {
-    private String name;
+class UserSpec extends Specification {
 
-    public Thread() {
-    }
+    void "User::toString() does not throw NPE"() {
+        when:
+        new User().toString()
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Thread{" +
-                "name='" + name + '\'' +
-                '}';
+        then:
+        noExceptionThrown()
     }
 }

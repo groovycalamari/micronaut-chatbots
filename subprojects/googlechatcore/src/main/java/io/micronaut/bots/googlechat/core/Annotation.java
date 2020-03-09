@@ -60,4 +60,14 @@ public class Annotation {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Annotation{" +
+                "length=" + length +
+                ", startIndex=" + startIndex +
+                ", userMention=" + (userMention != null ? userMention.toString() : null) +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

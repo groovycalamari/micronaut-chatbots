@@ -63,4 +63,14 @@ public class Sender {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Sender{" +
+                "name='" + name + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

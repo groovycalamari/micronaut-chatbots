@@ -21,7 +21,7 @@ import io.micronaut.bots.core.ChatBotMessageReceive;
 import io.micronaut.core.annotation.Introspected;
 
 @Introspected
-public class MessageReceive implements ChatBotMessageReceive {
+public class Event implements ChatBotMessageReceive {
     /**
      * The type of the event the bot is receiving.
      */
@@ -40,7 +40,7 @@ public class MessageReceive implements ChatBotMessageReceive {
     /**
      * Constructor.
      */
-    public MessageReceive() {
+    public Event() {
 
     }
 
@@ -82,5 +82,16 @@ public class MessageReceive implements ChatBotMessageReceive {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageReceive{" +
+                "type='" + type + '\'' +
+                ", eventTime='" + eventTime + '\'' +
+                ", space=" + (space != null ? space.toString() : null) +
+                ", message=" + (message != null ? message.toString() : null) +
+                ", user=" + (user != null ? user.toString() : null) +
+                '}';
     }
 }

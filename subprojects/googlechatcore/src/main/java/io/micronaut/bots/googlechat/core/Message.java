@@ -20,6 +20,7 @@ package io.micronaut.bots.googlechat.core;
 import io.micronaut.core.annotation.Introspected;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Introspected
 public class Message {
@@ -32,4 +33,75 @@ public class Message {
     private List<Annotation> annotations;
     private String argumentText;
 
+    public Message() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    public void setThread(Thread thread) {
+        this.thread = thread;
+    }
+
+    public List<Annotation> getAnnotations() {
+        return annotations;
+    }
+
+    public void setAnnotations(List<Annotation> annotations) {
+        this.annotations = annotations;
+    }
+
+    public String getArgumentText() {
+        return argumentText;
+    }
+
+    public void setArgumentText(String argumentText) {
+        this.argumentText = argumentText;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "name='" + name + '\'' +
+                ", sender=" + (sender != null ? sender.toString() : null) +
+                ", createTime='" + createTime + '\'' +
+                ", text='" + text + '\'' +
+                ", thread=" + (thread != null ? thread.toString() : null)  +
+                ", annotations=" + (annotations != null ? annotations.stream().map(Annotation::toString).collect(Collectors.joining(",")) : null)  +
+                ", argumentText='" + argumentText + '\'' +
+                '}';
+    }
 }

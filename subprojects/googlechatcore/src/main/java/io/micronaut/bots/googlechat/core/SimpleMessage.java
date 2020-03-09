@@ -17,37 +17,22 @@
  */
 package io.micronaut.bots.googlechat.core;
 
+import io.micronaut.bots.core.ChatBotMessageSend;
 import io.micronaut.core.annotation.Introspected;
 
 @Introspected
-public class UserMention {
-    private String type;
-    private User user;
+public class SimpleMessage implements ChatBotMessageSend {
 
-    public UserMention() {
+    private String text;
+
+    public SimpleMessage() {
     }
 
-    public String getType() {
-        return type;
+    public String getText() {
+        return text;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "UserMention{" +
-                "type='" + type + '\'' +
-                ", user=" + (user!= null ? user.toString() : null) +
-                '}';
+    public void setText(String text) {
+        this.text = text;
     }
 }

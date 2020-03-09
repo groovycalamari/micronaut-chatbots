@@ -46,7 +46,7 @@ public class TelegramMessageComposer implements MessageComposer {
         if (!(this.parser instanceof TelegramChatBotMessageParser)) {
             return Optional.empty();
         }
-        return (Optional) ((TelegramChatBotMessageParser)parser).parseChatType(update).map(chatId -> {
+        return (Optional) ((TelegramChatBotMessageParser)parser).parseChatId(update).map(chatId -> {
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(chatId);
             sendMessage.setText(text);

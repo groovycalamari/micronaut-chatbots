@@ -17,37 +17,14 @@
  */
 package io.micronaut.bots.googlechat.core;
 
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.context.annotation.EachBean;
+import io.micronaut.context.annotation.Factory;
 
-@Introspected
-public class UserMention {
-    private String type;
-    private User user;
+@Factory
+public class GoogleBotFactory {
 
-    public UserMention() {
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "UserMention{" +
-                "type='" + type + '\'' +
-                ", user=" + (user!= null ? user.toString() : null) +
-                '}';
+    @EachBean(GoogleChatBotConfiguration.class)
+    public GoogleChatBot buildGoogleChatBot(GoogleChatBotConfiguration configuration) {
+        return new GoogleChatBot(configuration.getProjectId(), configuration.getAtUsername());
     }
 }
