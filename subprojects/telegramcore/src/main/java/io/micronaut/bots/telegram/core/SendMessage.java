@@ -94,4 +94,13 @@ public class SendMessage extends Send {
         this.disableWebPagePreview = disableWebPagePreview;
     }
 
+    @Override
+    public String toString() {
+        return "SendMessage{" +
+                "method='" + method + '\'' +
+                ", text='" + text + '\'' +
+                ", parseMode='" + parseMode + '\'' +
+                ", disableWebPagePreview=" + disableWebPagePreview +
+                '}';
+    }
 }

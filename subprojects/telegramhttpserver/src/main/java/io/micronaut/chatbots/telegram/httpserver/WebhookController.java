@@ -56,6 +56,9 @@ public class WebhookController {
     public HttpResponse update(@PathVariable String token,
                                @Body Update update) {
         if (!configuration.containsKey(token)) {
+            if (LOG.isInfoEnabled()) {
+                LOG.info("Configuration does not contain supplied token. rejected update {}", update.toString());
+            }
             return HttpResponse.unauthorized();
         }
 
@@ -64,8 +67,14 @@ public class WebhookController {
             ChatBotMessageSend chatBotResponse = message.get();
             if (chatBotResponse instanceof Send) {
                 Send send = ((Send) chatBotResponse);
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("Returning {}", send.toString());
+                }
                 return HttpResponse.ok(send);
             }
+        }
+        if (LOG.isInfoEnabled()) {
+            LOG.info("Returning just 200 OK");
         }
         return HttpResponse.ok();
     }
