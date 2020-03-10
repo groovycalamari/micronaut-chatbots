@@ -52,7 +52,7 @@ public class DefaultUpdateDispatcher implements ChatBotMessageDispatcher {
     public Optional<ChatBotMessageSend> dispatch(@NonNull ChatBot chatBot, @NonNull ChatBotMessageReceive messageReceive) {
         if (shouldHandleMessage(chatBot, messageReceive)) {
             Optional<CommandHandler> handlerOptional = parseCommandHandler(chatBot, messageReceive);
-            if (handlerOptional.isEmpty()) {
+            if (!handlerOptional.isPresent()) {
                 handlerOptional = parseHandlerFromCommand(DEFAULT_COMMAND);
             }
             if (handlerOptional.isPresent()) {

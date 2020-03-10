@@ -60,7 +60,7 @@ public class TelegramDefaultUpdateDispatcher extends DefaultUpdateDispatcher {
         handleCallbackQuery(telegramBot, update);
         if (super.shouldHandleMessage(chatBot, chatBotMessageReceive)) {
             Optional<CommandHandler> handler = parseCommandHandler(chatBot, chatBotMessageReceive);
-            if (handler.isEmpty()) {
+            if (!handler.isPresent()) {
                 handler = parseHandlerFromCommand(DEFAULT_COMMAND);
             }
             if (handler.isPresent()) {
