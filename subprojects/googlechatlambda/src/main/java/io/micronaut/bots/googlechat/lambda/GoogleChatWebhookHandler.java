@@ -21,10 +21,6 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.nimbusds.jwt.JWT;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.JWTParser;
 import io.micronaut.bots.core.ChatBotMessageDispatcher;
 import io.micronaut.bots.core.ChatBotMessageSend;
 import io.micronaut.bots.googlechat.core.Event;
@@ -32,7 +28,6 @@ import io.micronaut.bots.googlechat.core.GoogleChatBot;
 import io.micronaut.bots.googlechat.security.GoogleChatBearerTokenVerifier;
 import io.micronaut.bots.googlechat.security.UnauthorizedGoogleChatToken;
 import io.micronaut.function.aws.MicronautRequestHandler;
-import io.micronaut.http.HttpHeaderValues;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpStatus;
 import org.slf4j.Logger;
@@ -40,13 +35,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
