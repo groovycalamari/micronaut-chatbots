@@ -32,7 +32,6 @@ config {
     }
 }
 
-
 dependencies {
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"
@@ -41,8 +40,12 @@ dependencies {
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation "io.micronaut:micronaut-inject"
     implementation "io.micronaut:micronaut-validation"
-    implementation "com.fasterxml.jackson.core:jackson-annotations"
+
     api 'com.github.spotbugs:spotbugs-annotations:3.1.12'
+    api "com.fasterxml.jackson.core:jackson-annotations"
+    api "io.micronaut:micronaut-core"
+    api "javax.validation:validation-api"
+
 
     testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation("org.spockframework:spock-core") {
