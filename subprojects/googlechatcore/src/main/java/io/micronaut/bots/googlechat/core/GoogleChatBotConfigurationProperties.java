@@ -17,9 +17,9 @@
  */
 package io.micronaut.bots.googlechat.core;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import javax.validation.constraints.NotBlank;
 

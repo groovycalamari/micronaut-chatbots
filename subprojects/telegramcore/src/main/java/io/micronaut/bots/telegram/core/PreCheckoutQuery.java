@@ -20,8 +20,8 @@ package io.micronaut.bots.telegram.core;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.core.annotation.Introspected;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
