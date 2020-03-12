@@ -17,6 +17,8 @@
  */
 package io.micronaut.chatbots.telegram.httpserver;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.bots.core.ChatBotMessageDispatcher;
 import io.micronaut.bots.core.ChatBotMessageSend;
 import io.micronaut.bots.telegram.core.Send;
@@ -41,10 +43,13 @@ public class WebhookController {
 
     private final Map<String, TelegramBot> configuration;
     private final ChatBotMessageDispatcher messageDispatcher;
+    private final ObjectMapper objectMapper;
 
     public WebhookController(Collection<TelegramBot> telegramBots,
-                             ChatBotMessageDispatcher messageDispatcher) {
+                             ChatBotMessageDispatcher messageDispatcher,
+                             ObjectMapper objectMapper) {
         this.messageDispatcher = messageDispatcher;
+        this.objectMapper = objectMapper;
         this.configuration = new HashMap<>();
 
         for (TelegramBot bot : telegramBots) {
@@ -65,12 +70,17 @@ public class WebhookController {
         Optional<ChatBotMessageSend> message = messageDispatcher.dispatch(configuration.get(token), update);
         if (message.isPresent()) {
             ChatBotMessageSend chatBotResponse = message.get();
-            if (chatBotResponse instanceof Send) {
-                Send send = ((Send) chatBotResponse);
+            if (LOG.isInfoEnabled()) {
+                LOG.info("Returning {}", chatBotResponse.toString());
+            }
+            try {
+                String jsonString = objectMapper.writeValueAsString(chatBotResponse);
+                return HttpResponse.ok(jsonString);
+            } catch (JsonProcessingException e) {
                 if (LOG.isInfoEnabled()) {
-                    LOG.info("Returning {}", send.toString());
+                    LOG.info("JSON Proecessing exception {}", e.getMessage());
                 }
-                return HttpResponse.ok(send);
+                return HttpResponse.badRequest();
             }
         }
         if (LOG.isInfoEnabled()) {
