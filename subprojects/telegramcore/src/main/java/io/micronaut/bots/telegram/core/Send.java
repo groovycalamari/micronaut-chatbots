@@ -44,6 +44,7 @@ public abstract class Send implements ChatBotMessageSend {
      * Sends the message silently. Users will receive a notification with no sound.
      */
     @Nullable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("disable_notification")
     private Boolean disableNotification;
 
@@ -51,6 +52,7 @@ public abstract class Send implements ChatBotMessageSend {
      * If the message is a reply, ID of the original message.
      */
     @Nullable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("reply_to_message_id")
     private String replyToMessageId;
 
@@ -59,6 +61,7 @@ public abstract class Send implements ChatBotMessageSend {
      * additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      */
     @Nullable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("reply_markup")
     private String replyMarkup;
 

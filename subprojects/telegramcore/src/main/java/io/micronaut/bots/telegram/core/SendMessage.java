@@ -45,6 +45,7 @@ public class SendMessage extends Send {
      * Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
      */
     @JsonProperty("parse_mode")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Nullable
     private String parseMode;
 
@@ -52,6 +53,7 @@ public class SendMessage extends Send {
      * Disables link previews for links in this message.
      */
     @Nullable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("disable_web_page_preview")
     private Boolean disableWebPagePreview;
 
