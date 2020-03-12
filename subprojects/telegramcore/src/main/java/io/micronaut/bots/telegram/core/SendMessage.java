@@ -32,8 +32,7 @@ import javax.validation.constraints.NotBlank;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SendMessage extends Send {
 
-    @NotBlank
-    private String method = "sendMessage";
+    private final static String METHOD_SENDMESSAGE = "sendMessage";
 
     /**
      * Text of the message to be sent
@@ -57,22 +56,15 @@ public class SendMessage extends Send {
     private Boolean disableWebPagePreview;
 
     public SendMessage() {
-        super("sendMessage");
+        super(METHOD_SENDMESSAGE);
     }
 
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
+    @NonNull
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(@NonNull String text) {
         this.text = text;
     }
 

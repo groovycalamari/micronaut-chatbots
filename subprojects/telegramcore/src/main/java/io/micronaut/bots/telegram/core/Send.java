@@ -28,7 +28,8 @@ import javax.validation.constraints.NotNull;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class Send implements ChatBotMessageSend {
 
-    private final String method;
+    @NonNull
+    protected final String method;
 
     /**
      * Unique identifier for the target chat or username of the target channel (in the format @channelusername)
@@ -65,14 +66,19 @@ public abstract class Send implements ChatBotMessageSend {
         this.method = method;
     }
 
+    @NonNull
+    public String getMethod() {
+        return method;
+    }
+
+    @NonNull
     public Object getChatId() {
         return chatId;
     }
 
-    public void setChatId(Object chatId) {
+    public void setChatId(@NonNull Object chatId) {
         this.chatId = chatId;
     }
-
 
     @Nullable
     public Boolean getDisableNotification() {
