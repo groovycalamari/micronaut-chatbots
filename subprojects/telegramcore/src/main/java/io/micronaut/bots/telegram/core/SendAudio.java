@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -35,7 +35,7 @@ public class SendAudio extends Send {
     /**
      * Audio file to send. Pass a file_id as String to send an audio file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an audio file from the Internet, or upload a new one using multipart/form-data.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String audio;
 
@@ -79,12 +79,12 @@ public class SendAudio extends Send {
         super("sendAudio");
     }
 
-    @Nonnull
+    @NonNull
     public String getAudio() {
         return audio;
     }
 
-    public void setAudio(@Nonnull String audio) {
+    public void setAudio(@NonNull String audio) {
         this.audio = audio;
     }
 

@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -38,7 +38,7 @@ public class Venue {
     /**
      * Venue location
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private Location location;
@@ -46,13 +46,13 @@ public class Venue {
     /**
      * Name of the venue
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String title;
     /**
      * Address of the venue.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String address;
 
@@ -73,30 +73,30 @@ public class Venue {
     public Venue() {
     }
 
-    @Nonnull
+    @NonNull
     public Location getLocation() {
         return location;
     }
 
-    public void setLocation(@Nonnull Location location) {
+    public void setLocation(@NonNull Location location) {
         this.location = location;
     }
 
-    @Nonnull
+    @NonNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(@Nonnull String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
-    @Nonnull
+    @NonNull
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(@Nonnull String address) {
+    public void setAddress(@NonNull String address) {
         this.address = address;
     }
 

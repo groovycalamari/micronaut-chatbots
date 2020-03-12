@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,7 +39,7 @@ public class Animation {
      * Identifier for this file
      */
     @JsonProperty("file_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String fileId;
 
@@ -47,28 +47,28 @@ public class Animation {
      * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
     @JsonProperty("file_unique_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String fileUniqueId;
 
     /**
      * Video width as defined by sender
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer	width;
 
     /**
      * Video height as defined by sender
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer	height;
 
     /**
      * Duration of the video in seconds as defined by sender
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer	duration;
 
@@ -103,48 +103,48 @@ public class Animation {
     public Animation() {
     }
 
-    @Nonnull
+    @NonNull
     public String getFileId() {
         return fileId;
     }
 
-    public void setFileId(@Nonnull String fileId) {
+    public void setFileId(@NonNull String fileId) {
         this.fileId = fileId;
     }
 
-    @Nonnull
+    @NonNull
     public String getFileUniqueId() {
         return fileUniqueId;
     }
 
-    public void setFileUniqueId(@Nonnull String fileUniqueId) {
+    public void setFileUniqueId(@NonNull String fileUniqueId) {
         this.fileUniqueId = fileUniqueId;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(@Nonnull Integer width) {
+    public void setWidth(@NonNull Integer width) {
         this.width = width;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(@Nonnull Integer height) {
+    public void setHeight(@NonNull Integer height) {
         this.height = height;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(@Nonnull Integer duration) {
+    public void setDuration(@NonNull Integer duration) {
         this.duration = duration;
     }
 

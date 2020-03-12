@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -36,7 +36,7 @@ public class ForceReply {
     /**
      * Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @JsonProperty("force_reply")
     private Boolean forceReply = Boolean.TRUE;
@@ -50,12 +50,12 @@ public class ForceReply {
     public ForceReply() {
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getForceReply() {
         return forceReply;
     }
 
-    public void setForceReply(@Nonnull Boolean forceReply) {
+    public void setForceReply(@NonNull Boolean forceReply) {
         this.forceReply = forceReply;
     }
 

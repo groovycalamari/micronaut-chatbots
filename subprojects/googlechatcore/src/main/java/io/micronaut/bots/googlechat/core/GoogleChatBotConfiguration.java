@@ -17,16 +17,15 @@
  */
 package io.micronaut.bots.googlechat.core;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.naming.Named;
 import io.micronaut.core.util.Toggleable;
 
-import javax.annotation.Nonnull;
-
 public interface GoogleChatBotConfiguration extends Named, Toggleable {
 
-    @Nonnull
+    @NonNull
     String getProjectId();
 
-    @Nonnull
+    @NonNull
     String getAtUsername();
 }

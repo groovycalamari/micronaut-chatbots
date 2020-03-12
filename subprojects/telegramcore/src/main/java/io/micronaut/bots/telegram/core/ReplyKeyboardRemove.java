@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -36,7 +36,7 @@ public class ReplyKeyboardRemove {
      * Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; if you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup)
      */
     @JsonProperty("remove_keyboard")
-    @Nonnull
+    @NonNull
     @NotNull
     private Boolean removeKeyboard = Boolean.TRUE;
 
@@ -49,12 +49,12 @@ public class ReplyKeyboardRemove {
     public ReplyKeyboardRemove() {
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getRemoveKeyboard() {
         return removeKeyboard;
     }
 
-    public void setRemoveKeyboard(@Nonnull Boolean removeKeyboard) {
+    public void setRemoveKeyboard(@NonNull Boolean removeKeyboard) {
         this.removeKeyboard = removeKeyboard;
     }
 

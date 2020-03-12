@@ -18,9 +18,9 @@
 package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -34,35 +34,35 @@ public class Location {
     /**
      * Longitude as defined by sender.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Float longitude;
 
     /**
      * Latitude as defined by sender
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Float latitude;
 
     public Location() {
     }
 
-    @Nonnull
+    @NonNull
     public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(@Nonnull Float longitude) {
+    public void setLongitude(@NonNull Float longitude) {
         this.longitude = longitude;
     }
 
-    @Nonnull
+    @NonNull
     public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(@Nonnull Float latitude) {
+    public void setLatitude(@NonNull Float latitude) {
         this.latitude = latitude;
     }
 

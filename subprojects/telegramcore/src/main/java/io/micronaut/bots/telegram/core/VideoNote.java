@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,7 +39,7 @@ public class VideoNote {
      * Identifier for this file.
      */
     @JsonProperty("file_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String fileId;
 
@@ -47,21 +47,21 @@ public class VideoNote {
      * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
     @JsonProperty("file_unique_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String fileUniqueId;
 
     /**
      * Video width and height (diameter of the video message) as defined by sender
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer length;
 
     /**
      * Duration of the video in seconds as defined by sender.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer	duration;
 
@@ -83,39 +83,39 @@ public class VideoNote {
 
     }
 
-    @Nonnull
+    @NonNull
     public String getFileId() {
         return fileId;
     }
 
-    public void setFileId(@Nonnull String fileId) {
+    public void setFileId(@NonNull String fileId) {
         this.fileId = fileId;
     }
 
-    @Nonnull
+    @NonNull
     public String getFileUniqueId() {
         return fileUniqueId;
     }
 
-    public void setFileUniqueId(@Nonnull String fileUniqueId) {
+    public void setFileUniqueId(@NonNull String fileUniqueId) {
         this.fileUniqueId = fileUniqueId;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getLength() {
         return length;
     }
 
-    public void setLength(@Nonnull Integer length) {
+    public void setLength(@NonNull Integer length) {
         this.length = length;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(@Nonnull Integer duration) {
+    public void setDuration(@NonNull Integer duration) {
         this.duration = duration;
     }
 

@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ public class ReplyKeyboardMarkup {
     /**
      * Array of button rows, each represented by an Array of KeyboardButton objects
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private List<KeyboardButton> keyboard;
 
@@ -66,12 +66,12 @@ public class ReplyKeyboardMarkup {
     public ReplyKeyboardMarkup() {
     }
 
-    @Nonnull
+    @NonNull
     public List<KeyboardButton> getKeyboard() {
         return keyboard;
     }
 
-    public void setKeyboard(@Nonnull List<KeyboardButton> keyboard) {
+    public void setKeyboard(@NonNull List<KeyboardButton> keyboard) {
         this.keyboard = keyboard;
     }
 

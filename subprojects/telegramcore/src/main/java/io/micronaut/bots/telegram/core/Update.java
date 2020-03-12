@@ -19,11 +19,11 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.core.ChatBotMessageReceive;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 
 @Introspected
@@ -34,7 +34,7 @@ public class Update implements ChatBotMessageReceive {
      * The update‘s unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
      */
     @JsonProperty("update_id")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer updateId;
 
@@ -109,12 +109,12 @@ public class Update implements ChatBotMessageReceive {
     public Update() {
     }
 
-    @Nonnull
+    @NonNull
     public Integer getUpdateId() {
         return updateId;
     }
 
-    public void setUpdateId(@Nonnull Integer updateId) {
+    public void setUpdateId(@NonNull Integer updateId) {
         this.updateId = updateId;
     }
 

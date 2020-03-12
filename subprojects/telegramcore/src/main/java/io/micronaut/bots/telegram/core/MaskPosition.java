@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -32,14 +32,14 @@ public class MaskPosition {
     /**
      * The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String point;
 
     /**
      * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @JsonProperty("x_shift")
     private Float xShift;
@@ -47,7 +47,7 @@ public class MaskPosition {
     /**
      * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @JsonProperty("y_shift")
     private Float yShift;
@@ -55,46 +55,46 @@ public class MaskPosition {
     /**
      * Mask scaling coefficient. For example, 2.0 means double size.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Float scale;
 
     public MaskPosition() {
     }
 
-    @Nonnull
+    @NonNull
     public String getPoint() {
         return point;
     }
 
-    public void setPoint(@Nonnull String point) {
+    public void setPoint(@NonNull String point) {
         this.point = point;
     }
 
-    @Nonnull
+    @NonNull
     public Float getxShift() {
         return xShift;
     }
 
-    public void setxShift(@Nonnull Float xShift) {
+    public void setxShift(@NonNull Float xShift) {
         this.xShift = xShift;
     }
 
-    @Nonnull
+    @NonNull
     public Float getyShift() {
         return yShift;
     }
 
-    public void setyShift(@Nonnull Float yShift) {
+    public void setyShift(@NonNull Float yShift) {
         this.yShift = yShift;
     }
 
-    @Nonnull
+    @NonNull
     public Float getScale() {
         return scale;
     }
 
-    public void setScale(@Nonnull Float scale) {
+    public void setScale(@NonNull Float scale) {
         this.scale = scale;
     }
 

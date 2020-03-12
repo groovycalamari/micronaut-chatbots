@@ -18,10 +18,9 @@
 package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 @Introspected
@@ -31,7 +30,7 @@ public class AnswerCallbackQuery {
      * Unique identifier for the query to be answered.
      */
     @JsonProperty("callback_query_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String callbackQueryId;
 

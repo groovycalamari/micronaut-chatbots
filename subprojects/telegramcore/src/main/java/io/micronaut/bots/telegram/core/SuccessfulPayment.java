@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -37,14 +37,14 @@ public class SuccessfulPayment {
     /**
      * Three-letter ISO 4217 currency code.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String currency;
 
     /**
      * Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @JsonProperty("total_amount")
     private Integer	totalAmount;
@@ -52,7 +52,7 @@ public class SuccessfulPayment {
     /**
      * Bot specified invoice payload
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("invoice_payload")
     private String invoicePayload;
@@ -75,7 +75,7 @@ public class SuccessfulPayment {
     /**
      * Telegram payment identifier
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("telegram_payment_charge_id")
     private String telegramPaymentChargeId;
@@ -83,7 +83,7 @@ public class SuccessfulPayment {
     /**
      * Provider payment identifier
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("provider_payment_charge_id")
     private String providerPaymentChargeId;

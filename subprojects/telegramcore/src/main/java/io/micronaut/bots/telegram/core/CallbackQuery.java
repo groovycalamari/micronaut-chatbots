@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -38,14 +38,14 @@ public class CallbackQuery {
     /**
      * Unique identifier for this query.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String id;
 
     /**
      * Sender.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private User from;
@@ -66,7 +66,7 @@ public class CallbackQuery {
     /**
      * Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in games.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("chat_instance")
     private String chatInstance;
@@ -87,21 +87,21 @@ public class CallbackQuery {
     public CallbackQuery() {
     }
 
-    @Nonnull
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(@Nonnull String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public User getFrom() {
         return from;
     }
 
-    public void setFrom(@Nonnull User from) {
+    public void setFrom(@NonNull User from) {
         this.from = from;
     }
 
@@ -123,12 +123,12 @@ public class CallbackQuery {
         this.inlineMessageId = inlineMessageId;
     }
 
-    @Nonnull
+    @NonNull
     public String getChatInstance() {
         return chatInstance;
     }
 
-    public void setChatInstance(@Nonnull String chatInstance) {
+    public void setChatInstance(@NonNull String chatInstance) {
         this.chatInstance = chatInstance;
     }
 

@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -38,7 +38,7 @@ public class LoginUrl {
      *
      * NOTE: You must always check the hash of the received data to verify the authentication and the integrity of the data as described in Checking authorization.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String url;
 
@@ -66,12 +66,12 @@ public class LoginUrl {
     public LoginUrl() {
     }
 
-    @Nonnull
+    @NonNull
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(@Nonnull String url) {
+    public void setUrl(@NonNull String url) {
         this.url = url;
     }
 

@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -38,7 +38,7 @@ public class SendMessage extends Send {
     /**
      * Text of the message to be sent
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String text;
 

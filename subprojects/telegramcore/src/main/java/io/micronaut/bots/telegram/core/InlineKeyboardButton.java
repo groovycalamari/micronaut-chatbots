@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -36,7 +36,7 @@ public class InlineKeyboardButton {
     /**
      * Label text on the button.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String text;
 
@@ -96,12 +96,12 @@ public class InlineKeyboardButton {
     public InlineKeyboardButton() {
     }
 
-    @Nonnull
+    @NonNull
     public String getText() {
         return text;
     }
 
-    public void setText(@Nonnull String text) {
+    public void setText(@NonNull String text) {
         this.text = text;
     }
 

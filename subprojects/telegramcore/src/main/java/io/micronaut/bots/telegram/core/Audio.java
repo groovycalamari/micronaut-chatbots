@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -39,7 +39,7 @@ public class Audio {
      */
     @JsonProperty("file_id")
     @NotBlank
-    @Nonnull
+    @NonNull
     private String fileId;
 
     /**
@@ -47,13 +47,13 @@ public class Audio {
      */
     @JsonProperty("file_unique_id")
     @NotBlank
-    @Nonnull
+    @NonNull
     private String fileUniqueId;
 
     /**
      * Duration of the audio in seconds as defined by sender
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer duration;
 
@@ -89,30 +89,30 @@ public class Audio {
     public Audio() {
     }
 
-    @Nonnull
+    @NonNull
     public String getFileId() {
         return fileId;
     }
 
-    public void setFileId(@Nonnull String fileId) {
+    public void setFileId(@NonNull String fileId) {
         this.fileId = fileId;
     }
 
-    @Nonnull
+    @NonNull
     public String getFileUniqueId() {
         return fileUniqueId;
     }
 
-    public void setFileUniqueId(@Nonnull String fileUniqueId) {
+    public void setFileUniqueId(@NonNull String fileUniqueId) {
         this.fileUniqueId = fileUniqueId;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(@Nonnull Integer duration) {
+    public void setDuration(@NonNull Integer duration) {
         this.duration = duration;
     }
 

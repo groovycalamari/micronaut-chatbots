@@ -20,7 +20,7 @@ package io.micronaut.bots.telegram.core;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * This object represents type of a poll, which is allowed to be created and sent when the corresponding button is pressed.

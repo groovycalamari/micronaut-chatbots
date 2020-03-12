@@ -20,7 +20,7 @@ package io.micronaut.bots.telegram.core;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.

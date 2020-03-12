@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 
 @Introspected
@@ -33,7 +33,7 @@ public class GetUserProfilePhotos {
      * Unique identifier of the target user.
      */
     @JsonProperty("user_id")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer userId;
 
@@ -52,12 +52,12 @@ public class GetUserProfilePhotos {
     public GetUserProfilePhotos() {
     }
 
-    @Nonnull
+    @NonNull
     public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(@Nonnull Integer userId) {
+    public void setUserId(@NonNull Integer userId) {
         this.userId = userId;
     }
 

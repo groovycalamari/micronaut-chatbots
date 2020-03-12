@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 @Introspected
@@ -32,7 +32,7 @@ public class SendVideo extends Send {
     /**
      * Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String video;
 
@@ -86,12 +86,12 @@ public class SendVideo extends Send {
         super("sendVideo");
     }
 
-    @Nonnull
+    @NonNull
     public String getVideo() {
         return video;
     }
 
-    public void setVideo(@Nonnull String video) {
+    public void setVideo(@NonNull String video) {
         this.video = video;
     }
 

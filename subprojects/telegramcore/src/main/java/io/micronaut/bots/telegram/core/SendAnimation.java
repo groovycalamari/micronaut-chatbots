@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 @Introspected
@@ -32,7 +32,7 @@ public class SendAnimation extends Send {
     /**
      * Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String animation;
 
@@ -79,12 +79,12 @@ public class SendAnimation extends Send {
         super("sendAnimation");
     }
 
-    @Nonnull
+    @NonNull
     public String getAnimation() {
         return animation;
     }
 
-    public void setAnimation(@Nonnull String animation) {
+    public void setAnimation(@NonNull String animation) {
         this.animation = animation;
     }
 

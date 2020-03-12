@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -39,21 +39,21 @@ public class Poll {
     /**
      * Unique poll identifier;
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String id;
 
     /**
      * Poll question, 1-255 characters
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String question;
 
     /**
      * List of poll options
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private List<PollOption> options;
 
@@ -61,7 +61,7 @@ public class Poll {
      * Total number of users that voted in the poll.
      */
     @JsonProperty("total_voter_count")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer totalVoterCount;
 
@@ -69,7 +69,7 @@ public class Poll {
      * True, if the poll is closed.
      */
     @JsonProperty("is_closed")
-    @Nonnull
+    @NonNull
     @NotNull
     private Boolean isClosed;
 
@@ -77,14 +77,14 @@ public class Poll {
      * True, if the poll is anonymous
      */
     @JsonProperty("is_anonymous")
-    @Nonnull
+    @NonNull
     @NotNull
     private Boolean isAnonymous;
 
     /**
      * type, currently can be “regular” or “quiz”
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @Pattern(regexp = "regular|quiz")
     private String typePoll;
@@ -93,7 +93,7 @@ public class Poll {
      * True, if the poll allows multiple answers
      */
     @JsonProperty("allows_multiple_answers")
-    @Nonnull
+    @NonNull
     @NotNull
     private Boolean allowsMultipleAnswers;
 
@@ -106,75 +106,75 @@ public class Poll {
     public Poll() {
     }
 
-    @Nonnull
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(@Nonnull String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public String getQuestion() {
         return question;
     }
 
-    public void setQuestion(@Nonnull String question) {
+    public void setQuestion(@NonNull String question) {
         this.question = question;
     }
 
-    @Nonnull
+    @NonNull
     public List<PollOption> getOptions() {
         return options;
     }
 
-    public void setOptions(@Nonnull List<PollOption> options) {
+    public void setOptions(@NonNull List<PollOption> options) {
         this.options = options;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getTotalVoterCount() {
         return totalVoterCount;
     }
 
-    public void setTotalVoterCount(@Nonnull Integer totalVoterCount) {
+    public void setTotalVoterCount(@NonNull Integer totalVoterCount) {
         this.totalVoterCount = totalVoterCount;
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getClosed() {
         return isClosed;
     }
 
-    public void setClosed(@Nonnull Boolean closed) {
+    public void setClosed(@NonNull Boolean closed) {
         isClosed = closed;
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getAnonymous() {
         return isAnonymous;
     }
 
-    public void setAnonymous(@Nonnull Boolean anonymous) {
+    public void setAnonymous(@NonNull Boolean anonymous) {
         isAnonymous = anonymous;
     }
 
-    @Nonnull
+    @NonNull
     public String getTypePoll() {
         return typePoll;
     }
 
-    public void setTypePoll(@Nonnull String typePoll) {
+    public void setTypePoll(@NonNull String typePoll) {
         this.typePoll = typePoll;
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getAllowsMultipleAnswers() {
         return allowsMultipleAnswers;
     }
 
-    public void setAllowsMultipleAnswers(@Nonnull Boolean allowsMultipleAnswers) {
+    public void setAllowsMultipleAnswers(@NonNull Boolean allowsMultipleAnswers) {
         this.allowsMultipleAnswers = allowsMultipleAnswers;
     }
 

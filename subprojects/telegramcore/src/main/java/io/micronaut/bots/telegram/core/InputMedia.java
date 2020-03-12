@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -38,7 +38,7 @@ public abstract class InputMedia {
     /**
      * Type of the result, must be photo.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String type;
 
@@ -47,7 +47,7 @@ public abstract class InputMedia {
      * File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name.
      * @see <a href="https://core.telegram.org/bots/api#sending-files">More info on Sending Files</a>
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String media;
 
@@ -65,25 +65,25 @@ public abstract class InputMedia {
     @JsonProperty("parse_mode")
     private String parseMode;
 
-    public InputMedia(@Nonnull String type) {
+    public InputMedia(@NonNull String type) {
         this.type = type;
     }
 
-    @Nonnull
+    @NonNull
     public String getType() {
         return type;
     }
 
-    public void setType(@Nonnull String type) {
+    public void setType(@NonNull String type) {
         this.type = type;
     }
 
-    @Nonnull
+    @NonNull
     public String getMedia() {
         return media;
     }
 
-    public void setMedia(@Nonnull String media) {
+    public void setMedia(@NonNull String media) {
         this.media = media;
     }
 

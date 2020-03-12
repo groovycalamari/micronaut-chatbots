@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -37,14 +37,14 @@ public class PreCheckoutQuery {
     /**
      * Unique query identifier
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String id;
     /**
      * User who sent the query
      */
 
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private User from;
@@ -52,7 +52,7 @@ public class PreCheckoutQuery {
     /**
      * Three-letter ISO 4217 currency code
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String currency;
 
@@ -60,7 +60,7 @@ public class PreCheckoutQuery {
      * Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
      */
     @JsonProperty("total_amount")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer totalAmount;
 
@@ -68,7 +68,7 @@ public class PreCheckoutQuery {
      * Bot specified invoice payload
      */
     @JsonProperty("invoice_payload")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String invoicePayload;
     /**
@@ -88,48 +88,48 @@ public class PreCheckoutQuery {
     public PreCheckoutQuery() {
     }
 
-    @Nonnull
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(@Nonnull String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public User getFrom() {
         return from;
     }
 
-    public void setFrom(@Nonnull User from) {
+    public void setFrom(@NonNull User from) {
         this.from = from;
     }
 
-    @Nonnull
+    @NonNull
     public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(@Nonnull String currency) {
+    public void setCurrency(@NonNull String currency) {
         this.currency = currency;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(@Nonnull Integer totalAmount) {
+    public void setTotalAmount(@NonNull Integer totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    @Nonnull
+    @NonNull
     public String getInvoicePayload() {
         return invoicePayload;
     }
 
-    public void setInvoicePayload(@Nonnull String invoicePayload) {
+    public void setInvoicePayload(@NonNull String invoicePayload) {
         this.invoicePayload = invoicePayload;
     }
 

@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 @Introspected
@@ -34,7 +34,7 @@ public class SendContact extends Send  {
      */
     @JsonProperty("phone_number")
     @NotBlank
-    @Nonnull
+    @NonNull
     private String phoneNumber;
 
     /**
@@ -42,7 +42,7 @@ public class SendContact extends Send  {
      */
     @JsonProperty("first_name")
     @NotBlank
-    @Nonnull
+    @NonNull
     private String firstName;
 
     /**
@@ -62,21 +62,21 @@ public class SendContact extends Send  {
         super("sendContact");
     }
 
-    @Nonnull
+    @NonNull
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(@Nonnull String phoneNumber) {
+    public void setPhoneNumber(@NonNull String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    @Nonnull
+    @NonNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@Nonnull String firstName) {
+    public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
 

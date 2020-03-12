@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -34,14 +34,14 @@ public class SendPoll extends Send {
     /**
      * Poll question, 1-255 characters.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String question;
 
     /**
      * List of answer options, 2-10 strings 1-100 characters each
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private List<String> options;
 
@@ -83,21 +83,21 @@ public class SendPoll extends Send {
         super("sendPoll");
     }
 
-    @Nonnull
+    @NonNull
     public String getQuestion() {
         return question;
     }
 
-    public void setQuestion(@Nonnull String question) {
+    public void setQuestion(@NonNull String question) {
         this.question = question;
     }
 
-    @Nonnull
+    @NonNull
     public List<String> getOptions() {
         return options;
     }
 
-    public void setOptions(@Nonnull List<String> options) {
+    public void setOptions(@NonNull List<String> options) {
         this.options = options;
     }
 

@@ -17,16 +17,16 @@
  */
 package io.micronaut.bots.telegram.httpclient;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.naming.Named;
 import io.micronaut.core.util.Toggleable;
 
-import javax.annotation.Nonnull;
 
 public interface TelegramBotConfiguration extends Named, Toggleable {
 
-    @Nonnull
+    @NonNull
     String getToken();
 
-    @Nonnull
+    @NonNull
     String getAtUsername();
 }

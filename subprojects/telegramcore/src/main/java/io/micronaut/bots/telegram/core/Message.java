@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -40,7 +40,7 @@ public class Message {
      * Unique message identifier inside this chat
      */
     @JsonProperty("message_id")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer messageId;
 
@@ -55,14 +55,14 @@ public class Message {
     /**
      * Date the message was sent in Unix time
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer date;
 
     /**
      * Conversation the message belongs to
      */
-    @Nonnull
+    @NonNull
     @Valid
     @NotNull
     private Chat chat;
@@ -359,12 +359,12 @@ public class Message {
 
     }
 
-    @Nonnull
+    @NonNull
     public Integer getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(@Nonnull Integer messageId) {
+    public void setMessageId(@NonNull Integer messageId) {
         this.messageId = messageId;
     }
 
@@ -377,21 +377,21 @@ public class Message {
         this.from = from;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getDate() {
         return date;
     }
 
-    public void setDate(@Nonnull Integer date) {
+    public void setDate(@NonNull Integer date) {
         this.date = date;
     }
 
-    @Nonnull
+    @NonNull
     public Chat getChat() {
         return chat;
     }
 
-    public void setChat(@Nonnull Chat chat) {
+    public void setChat(@NonNull Chat chat) {
         this.chat = chat;
     }
 

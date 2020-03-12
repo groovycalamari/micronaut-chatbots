@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -37,7 +37,7 @@ public class KeyboardButton {
      * Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
      */
     @NotBlank
-    @Nonnull
+    @NonNull
     private String text;
 
     /**
@@ -64,12 +64,12 @@ public class KeyboardButton {
     public KeyboardButton() {
     }
 
-    @Nonnull
+    @NonNull
     public String getText() {
         return text;
     }
 
-    public void setText(@Nonnull String text) {
+    public void setText(@NonNull String text) {
         this.text = text;
     }
 

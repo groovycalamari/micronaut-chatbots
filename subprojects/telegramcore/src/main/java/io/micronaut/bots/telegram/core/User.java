@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -36,7 +36,7 @@ public class User {
     /**
      * Unique identifier for this user or bot
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer id;
 
@@ -44,7 +44,7 @@ public class User {
      * True, if this user is a bot
      */
     @JsonProperty("is_bot")
-    @Nonnull
+    @NonNull
     @NotNull
     private Boolean bot;
 
@@ -52,7 +52,7 @@ public class User {
      * User‘s or bot’s first name
      */
     @JsonProperty("first_name")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String firstName;
 
@@ -102,30 +102,30 @@ public class User {
 
     }
 
-    @Nonnull
+    @NonNull
     public Integer getId() {
         return id;
     }
 
-    public void setId(@Nonnull Integer id) {
+    public void setId(@NonNull Integer id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getBot() {
         return bot;
     }
 
-    public void setBot(@Nonnull Boolean bot) {
+    public void setBot(@NonNull Boolean bot) {
         this.bot = bot;
     }
 
-    @Nonnull
+    @NonNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@Nonnull String firstName) {
+    public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
 

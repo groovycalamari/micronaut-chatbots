@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -33,7 +33,7 @@ public class ForwardMessage {
      * Unique identifier for the target chat or username of the target channel (in the format @channelusername).
      */
     @JsonProperty("chat_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String chatId;
 
@@ -41,7 +41,7 @@ public class ForwardMessage {
      * Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername).
      */
     @JsonProperty("from_chat_id")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String fromChatId;
 
@@ -56,28 +56,28 @@ public class ForwardMessage {
      * Message identifier in the chat specified in from_chat_id
      */
     @JsonProperty("message_id")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer messageId;
 
     public ForwardMessage() {
     }
 
-    @Nonnull
+    @NonNull
     public String getChatId() {
         return chatId;
     }
 
-    public void setChatId(@Nonnull String chatId) {
+    public void setChatId(@NonNull String chatId) {
         this.chatId = chatId;
     }
 
-    @Nonnull
+    @NonNull
     public String getFromChatId() {
         return fromChatId;
     }
 
-    public void setFromChatId(@Nonnull String fromChatId) {
+    public void setFromChatId(@NonNull String fromChatId) {
         this.fromChatId = fromChatId;
     }
 
@@ -90,12 +90,12 @@ public class ForwardMessage {
         this.disableNotification = disableNotification;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(@Nonnull Integer messageId) {
+    public void setMessageId(@NonNull Integer messageId) {
         this.messageId = messageId;
     }
 }

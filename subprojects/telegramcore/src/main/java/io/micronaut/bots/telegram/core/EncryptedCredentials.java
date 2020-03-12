@@ -18,9 +18,10 @@
 package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -34,42 +35,42 @@ public class EncryptedCredentials {
     /**
      * Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String data;
 
     /**
      * Base64-encoded data hash for data authentication.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String hash;
 
     /**
      * Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String secret;
 
     public EncryptedCredentials() {
     }
 
-    @Nonnull
+    @NonNull
     public String getData() {
         return data;
     }
 
-    public void setData(@Nonnull String data) {
+    public void setData(@NonNull String data) {
         this.data = data;
     }
 
-    @Nonnull
+    @NonNull
     public String getHash() {
         return hash;
     }
 
-    public void setHash(@Nonnull String hash) {
+    public void setHash(@NonNull String hash) {
         this.hash = hash;
     }
 

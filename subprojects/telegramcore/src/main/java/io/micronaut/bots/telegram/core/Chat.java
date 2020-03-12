@@ -19,11 +19,11 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.core.ChatBotSpace;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -37,14 +37,14 @@ public class Chat implements ChatBotSpace {
     /**
      * Unique identifier for this chat. This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer id;
 
     /**
      * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Pattern(regexp = "private|group|supergroup|channel")
     private String type;
@@ -131,21 +131,21 @@ public class Chat implements ChatBotSpace {
     public Chat() {
     }
 
-    @Nonnull
+    @NonNull
     public Integer getId() {
         return id;
     }
 
-    public void setId(@Nonnull Integer id) {
+    public void setId(@NonNull Integer id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public String getType() {
         return type;
     }
 
-    public void setType(@Nonnull String type) {
+    public void setType(@NonNull String type) {
         this.type = type;
     }
 

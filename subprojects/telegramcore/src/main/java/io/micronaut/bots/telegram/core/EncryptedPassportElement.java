@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +37,7 @@ public class EncryptedPassportElement {
     /**
      * Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String type;
 
@@ -96,18 +96,18 @@ public class EncryptedPassportElement {
      * String	Base64-encoded element hash for using in PassportElementErrorUnspecified
      */
     @NotBlank
-    @Nonnull
+    @NonNull
     private String hash;
 
     public EncryptedPassportElement() {
     }
 
-    @Nonnull
+    @NonNull
     public String getType() {
         return type;
     }
 
-    public void setType(@Nonnull String type) {
+    public void setType(@NonNull String type) {
         this.type = type;
     }
 
@@ -183,12 +183,12 @@ public class EncryptedPassportElement {
         this.translation = translation;
     }
 
-    @Nonnull
+    @NonNull
     public String getHash() {
         return hash;
     }
 
-    public void setHash(@Nonnull String hash) {
+    public void setHash(@NonNull String hash) {
         this.hash = hash;
     }
 

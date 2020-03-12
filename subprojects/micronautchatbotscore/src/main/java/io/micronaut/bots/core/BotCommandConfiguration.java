@@ -17,9 +17,9 @@
  */
 package io.micronaut.bots.core;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.core.naming.Named;
 
-import javax.annotation.Nullable;
 
 public interface BotCommandConfiguration extends Named {
 

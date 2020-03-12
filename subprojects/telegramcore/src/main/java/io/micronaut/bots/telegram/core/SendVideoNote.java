@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 @Introspected
@@ -33,7 +33,7 @@ public class SendVideoNote extends Send {
      * Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data.
      */
     @JsonProperty("video_note")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String videoNote;
 
@@ -67,12 +67,12 @@ public class SendVideoNote extends Send {
         super("sendVideoNote");
     }
 
-    @Nonnull
+    @NonNull
     public String getVideoNote() {
         return videoNote;
     }
 
-    public void setVideoNote(@Nonnull String videoNote) {
+    public void setVideoNote(@NonNull String videoNote) {
         this.videoNote = videoNote;
     }
 

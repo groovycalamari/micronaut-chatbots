@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,35 +38,35 @@ public class UserProfilePhotos {
      * Total number of profile pictures the target user has.
      */
     @JsonProperty("total_count")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer totalCount;
 
     /**
      * Array of PhotoSize	Requested profile pictures (in up to 4 sizes each)
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private List<PhotoSize> photos;
 
     public UserProfilePhotos() {
     }
 
-    @Nonnull
+    @NonNull
     public Integer getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount(@Nonnull Integer totalCount) {
+    public void setTotalCount(@NonNull Integer totalCount) {
         this.totalCount = totalCount;
     }
 
-    @Nonnull
+    @NonNull
     public List<PhotoSize> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(@Nonnull List<PhotoSize> photos) {
+    public void setPhotos(@NonNull List<PhotoSize> photos) {
         this.photos = photos;
     }
 

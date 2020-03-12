@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -38,14 +38,14 @@ public class PollAnswer {
      * Unique poll identifier.
      */
     @NotBlank
-    @Nonnull
+    @NonNull
     @JsonProperty("poll_id")
     private String pollId;
 
     /**
      * The user, who changed the answer to the poll.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private User user;
@@ -53,7 +53,7 @@ public class PollAnswer {
     /**
      * 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @JsonProperty("option_ids")
     private List<Integer> optionIds;
@@ -61,31 +61,30 @@ public class PollAnswer {
     public PollAnswer() {
     }
 
-
-    @Nonnull
+    @NonNull
     public String getPollId() {
         return pollId;
     }
 
-    public void setPollId(@Nonnull String pollId) {
+    public void setPollId(@NonNull String pollId) {
         this.pollId = pollId;
     }
 
-    @Nonnull
+    @NonNull
     public User getUser() {
         return user;
     }
 
-    public void setUser(@Nonnull User user) {
+    public void setUser(@NonNull User user) {
         this.user = user;
     }
 
-    @Nonnull
+    @NonNull
     public List<Integer> getOptionIds() {
         return optionIds;
     }
 
-    public void setOptionIds(@Nonnull List<Integer> optionIds) {
+    public void setOptionIds(@NonNull List<Integer> optionIds) {
         this.optionIds = optionIds;
     }
 

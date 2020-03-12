@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -35,14 +35,14 @@ public class Invoice {
     /**
      * Product name
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String title;
 
     /**
      * Product description
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String description;
 
@@ -50,14 +50,14 @@ public class Invoice {
      * Unique bot deep-linking parameter that can be used to generate this invoice
      */
     @JsonProperty("start_parameter")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String startParameter;
 
     /**
      * Three-letter ISO 4217 currency code
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String currency;
 
@@ -65,55 +65,55 @@ public class Invoice {
      * Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
      */
     @JsonProperty("total_amount")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer totalAmount;
 
     public Invoice() {
     }
 
-    @Nonnull
+    @NonNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(@Nonnull String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
-    @Nonnull
+    @NonNull
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(@Nonnull String description) {
+    public void setDescription(@NonNull String description) {
         this.description = description;
     }
 
-    @Nonnull
+    @NonNull
     public String getStartParameter() {
         return startParameter;
     }
 
-    public void setStartParameter(@Nonnull String startParameter) {
+    public void setStartParameter(@NonNull String startParameter) {
         this.startParameter = startParameter;
     }
 
-    @Nonnull
+    @NonNull
     public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(@Nonnull String currency) {
+    public void setCurrency(@NonNull String currency) {
         this.currency = currency;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(@Nonnull Integer totalAmount) {
+    public void setTotalAmount(@NonNull Integer totalAmount) {
         this.totalAmount = totalAmount;
     }
 

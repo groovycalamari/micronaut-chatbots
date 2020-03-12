@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,14 +36,14 @@ public class ShippingQuery {
     /**
      * Unique query identifier
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String id;
 
     /**
      * User who sent the query.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private User from;
@@ -52,7 +52,7 @@ public class ShippingQuery {
      * Bot specified invoice payload
      */
     @JsonProperty("invoice_payload")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String invoicePayload;
 
@@ -60,7 +60,7 @@ public class ShippingQuery {
      * User specified shipping address
      */
     @JsonProperty("shipping_address")
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private ShippingAddress shippingAddress;
@@ -68,39 +68,39 @@ public class ShippingQuery {
     public ShippingQuery() {
     }
 
-    @Nonnull
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(@Nonnull String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
-    @Nonnull
+    @NonNull
     public User getFrom() {
         return from;
     }
 
-    public void setFrom(@Nonnull User from) {
+    public void setFrom(@NonNull User from) {
         this.from = from;
     }
 
-    @Nonnull
+    @NonNull
     public String getInvoicePayload() {
         return invoicePayload;
     }
 
-    public void setInvoicePayload(@Nonnull String invoicePayload) {
+    public void setInvoicePayload(@NonNull String invoicePayload) {
         this.invoicePayload = invoicePayload;
     }
 
-    @Nonnull
+    @NonNull
     public ShippingAddress getShippingAddress() {
         return shippingAddress;
     }
 
-    public void setShippingAddress(@Nonnull ShippingAddress shippingAddress) {
+    public void setShippingAddress(@NonNull ShippingAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 

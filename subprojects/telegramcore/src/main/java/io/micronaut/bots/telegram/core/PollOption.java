@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -35,7 +35,7 @@ public class PollOption {
     /**
      * Option text, 1-100 characters.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String text;
 
@@ -43,28 +43,28 @@ public class PollOption {
      * Number of users that voted for this option
      */
     @JsonProperty("voter_count")
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer voterCount;
 
     public PollOption() {
     }
 
-    @Nonnull
+    @NonNull
     public String getText() {
         return text;
     }
 
-    public void setText(@Nonnull String text) {
+    public void setText(@NonNull String text) {
         this.text = text;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getVoterCount() {
         return voterCount;
     }
 
-    public void setVoterCount(@Nonnull Integer voterCount) {
+    public void setVoterCount(@NonNull Integer voterCount) {
         this.voterCount = voterCount;
     }
 

@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -36,7 +36,7 @@ public class ChatMember {
     /**
      * Information about the user.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private User user;
@@ -167,12 +167,12 @@ public class ChatMember {
     public ChatMember() {
     }
 
-    @Nonnull
+    @NonNull
     public User getUser() {
         return user;
     }
 
-    public void setUser(@Nonnull User user) {
+    public void setUser(@NonNull User user) {
         this.user = user;
     }
 

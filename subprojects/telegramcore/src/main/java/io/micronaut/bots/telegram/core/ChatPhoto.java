@@ -19,9 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -34,7 +35,7 @@ public class ChatPhoto {
     /**
      * File identifier of small (160x160) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("small_file_id")
     private String smallFileId;
@@ -42,7 +43,7 @@ public class ChatPhoto {
     /**
      * Unique file identifier of small (160x160) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("small_file_unique_id")
     private String smallFileUniqueId;
@@ -50,7 +51,7 @@ public class ChatPhoto {
     /**
      * File identifier of big (640x640) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("big_file_id")
     private String bigFileId;
@@ -58,7 +59,7 @@ public class ChatPhoto {
     /**
      * Unique file identifier of big (640x640) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("big_file_unique_id")
     private String bigFileUniqueId;
@@ -66,39 +67,39 @@ public class ChatPhoto {
     public ChatPhoto() {
     }
 
-    @Nonnull
+    @NonNull
     public String getSmallFileId() {
         return smallFileId;
     }
 
-    public void setSmallFileId(@Nonnull String smallFileId) {
+    public void setSmallFileId(@NonNull String smallFileId) {
         this.smallFileId = smallFileId;
     }
 
-    @Nonnull
+    @NonNull
     public String getBigFileId() {
         return bigFileId;
     }
 
-    public void setBigFileId(@Nonnull String bigFileId) {
+    public void setBigFileId(@NonNull String bigFileId) {
         this.bigFileId = bigFileId;
     }
 
-    @Nonnull
+    @NonNull
     public String getSmallFileUniqueId() {
         return smallFileUniqueId;
     }
 
-    public void setSmallFileUniqueId(@Nonnull String smallFileUniqueId) {
+    public void setSmallFileUniqueId(@NonNull String smallFileUniqueId) {
         this.smallFileUniqueId = smallFileUniqueId;
     }
 
-    @Nonnull
+    @NonNull
     public String getBigFileUniqueId() {
         return bigFileUniqueId;
     }
 
-    public void setBigFileUniqueId(@Nonnull String bigFileUniqueId) {
+    public void setBigFileUniqueId(@NonNull String bigFileUniqueId) {
         this.bigFileUniqueId = bigFileUniqueId;
     }
 

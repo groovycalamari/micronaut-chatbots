@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.core.ChatBotMessageSend;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -36,7 +36,7 @@ public abstract class Send implements ChatBotMessageSend {
      */
     @JsonProperty("chat_id")
     @NotNull
-    @Nonnull
+    @NonNull
     private Object chatId;
 
     /**

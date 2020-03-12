@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -35,7 +35,7 @@ public class File {
     /**
      * Identifier for this file, which can be used to download or reuse the file.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("file_id")
     private String fileId;
@@ -43,7 +43,7 @@ public class File {
     /**
      * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("file_unique_id")
     private String fileUniqueId;
@@ -65,21 +65,21 @@ public class File {
     public File() {
     }
 
-    @Nonnull
+    @NonNull
     public String getFileId() {
         return fileId;
     }
 
-    public void setFileId(@Nonnull String fileId) {
+    public void setFileId(@NonNull String fileId) {
         this.fileId = fileId;
     }
 
-    @Nonnull
+    @NonNull
     public String getFileUniqueId() {
         return fileUniqueId;
     }
 
-    public void setFileUniqueId(@Nonnull String fileUniqueId) {
+    public void setFileUniqueId(@NonNull String fileUniqueId) {
         this.fileUniqueId = fileUniqueId;
     }
 

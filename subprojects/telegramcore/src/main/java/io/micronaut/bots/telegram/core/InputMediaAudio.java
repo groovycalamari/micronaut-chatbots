@@ -20,7 +20,7 @@ package io.micronaut.bots.telegram.core;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * Represents an audio file to be treated as music to be sent.

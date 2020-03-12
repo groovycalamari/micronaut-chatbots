@@ -18,10 +18,10 @@
 package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -37,21 +37,21 @@ public class MessageEntity {
     /**
      * Type of the entity. Can be mention (@username), hashtag, cashtag, bot_command, url, email, phone_number, bold (bold text), italic (italic text), code (monowidth string), pre (monowidth block), text_link (for clickable text URLs), text_mention (for users without usernames)
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String type;
 
     /**
      * Offset in UTF-16 code units to the start of the entity
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer offset;
 
     /**
      * Length of the entity in UTF-16 code units
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Integer length;
 
@@ -71,30 +71,30 @@ public class MessageEntity {
     public MessageEntity() {
     }
 
-    @Nonnull
+    @NonNull
     public String getType() {
         return type;
     }
 
-    public void setType(@Nonnull String type) {
+    public void setType(@NonNull String type) {
         this.type = type;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getOffset() {
         return offset;
     }
 
-    public void setOffset(@Nonnull Integer offset) {
+    public void setOffset(@NonNull Integer offset) {
         this.offset = offset;
     }
 
-    @Nonnull
+    @NonNull
     public Integer getLength() {
         return length;
     }
 
-    public void setLength(@Nonnull Integer length) {
+    public void setLength(@NonNull Integer length) {
         this.length = length;
     }
 

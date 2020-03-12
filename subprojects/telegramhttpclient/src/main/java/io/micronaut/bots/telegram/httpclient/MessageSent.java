@@ -17,16 +17,16 @@
  */
 package io.micronaut.bots.telegram.httpclient;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.bots.telegram.core.Message;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotNull;
 
 @Introspected
 public class MessageSent {
-    @Nonnull
+    @NonNull
     @NotNull
     private Boolean ok;
 
@@ -36,12 +36,12 @@ public class MessageSent {
     public MessageSent() {
     }
 
-    @Nonnull
+    @NonNull
     public Boolean getOk() {
         return ok;
     }
 
-    public void setOk(@Nonnull Boolean ok) {
+    public void setOk(@NonNull Boolean ok) {
         this.ok = ok;
     }
 

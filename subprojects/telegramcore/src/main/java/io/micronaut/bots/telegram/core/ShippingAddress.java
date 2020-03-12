@@ -19,9 +19,9 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -36,28 +36,28 @@ public class ShippingAddress {
      * ISO 3166-1 alpha-2 country code
      */
     @JsonProperty("country_code")
-    @Nonnull
+    @NonNull
     @NotBlank
     private String countryCode;
 
     /**
      * State, if applicable
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String state;
 
     /**
      * City
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String city;
 
     /**
      * First line for the address.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("street_line1")
     private String streetLine1;
@@ -65,7 +65,7 @@ public class ShippingAddress {
     /**
      * Second line for the address
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("street_line2")
     private String streetLine2;
@@ -73,7 +73,7 @@ public class ShippingAddress {
     /**
      * Address post codes.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("post_code")
     private String postCode;
@@ -81,57 +81,57 @@ public class ShippingAddress {
     public ShippingAddress() {
     }
 
-    @Nonnull
+    @NonNull
     public String getCountryCode() {
         return countryCode;
     }
 
-    public void setCountryCode(@Nonnull String countryCode) {
+    public void setCountryCode(@NonNull String countryCode) {
         this.countryCode = countryCode;
     }
 
-    @Nonnull
+    @NonNull
     public String getState() {
         return state;
     }
 
-    public void setState(@Nonnull String state) {
+    public void setState(@NonNull String state) {
         this.state = state;
     }
 
-    @Nonnull
+    @NonNull
     public String getCity() {
         return city;
     }
 
-    public void setCity(@Nonnull String city) {
+    public void setCity(@NonNull String city) {
         this.city = city;
     }
 
-    @Nonnull
+    @NonNull
     public String getStreetLine1() {
         return streetLine1;
     }
 
-    public void setStreetLine1(@Nonnull String streetLine1) {
+    public void setStreetLine1(@NonNull String streetLine1) {
         this.streetLine1 = streetLine1;
     }
 
-    @Nonnull
+    @NonNull
     public String getStreetLine2() {
         return streetLine2;
     }
 
-    public void setStreetLine2(@Nonnull String streetLine2) {
+    public void setStreetLine2(@NonNull String streetLine2) {
         this.streetLine2 = streetLine2;
     }
 
-    @Nonnull
+    @NonNull
     public String getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(@Nonnull String postCode) {
+    public void setPostCode(@NonNull String postCode) {
         this.postCode = postCode;
     }
 

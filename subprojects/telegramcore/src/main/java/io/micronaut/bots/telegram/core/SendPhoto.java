@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -35,7 +35,7 @@ public class SendPhoto extends Send {
     /**
      * Photo to send. Pass a file_id as String to send a photo that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a photo from the Internet, or upload a new photo using multipart/form-data. More info on Sending Files »
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String photo;
 
@@ -57,12 +57,12 @@ public class SendPhoto extends Send {
         super("sendPhoto");
     }
 
-    @Nonnull
+    @NonNull
     public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(@Nonnull String photo) {
+    public void setPhoto(@NonNull String photo) {
         this.photo = photo;
     }
 

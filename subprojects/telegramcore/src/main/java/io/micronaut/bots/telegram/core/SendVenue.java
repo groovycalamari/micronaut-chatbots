@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -35,27 +35,27 @@ public class SendVenue extends Send {
     /**
      * Latitude of the venue
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Float latitude;
 
     /**
      * Longitude of the venue
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private Float longitude;
 
     /**
      * Name of the venue
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String title;
     /**
      * Address of the venue.
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String address;
 
@@ -77,39 +77,39 @@ public class SendVenue extends Send {
         super("sendVenue");
     }
 
-    @Nonnull
+    @NonNull
     public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(@Nonnull Float latitude) {
+    public void setLatitude(@NonNull Float latitude) {
         this.latitude = latitude;
     }
 
-    @Nonnull
+    @NonNull
     public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(@Nonnull Float longitude) {
+    public void setLongitude(@NonNull Float longitude) {
         this.longitude = longitude;
     }
 
-    @Nonnull
+    @NonNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(@Nonnull String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
-    @Nonnull
+    @NonNull
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(@Nonnull String address) {
+    public void setAddress(@NonNull String address) {
         this.address = address;
     }
 

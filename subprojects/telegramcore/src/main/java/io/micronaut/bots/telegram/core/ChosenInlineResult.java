@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -37,7 +37,7 @@ public class ChosenInlineResult {
     /**
      * The unique identifier for the result that was chosen
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     @JsonProperty("resultid")
     private String resultId;
@@ -45,7 +45,7 @@ public class ChosenInlineResult {
     /**
      * The user that chose the result
      */
-    @Nonnull
+    @NonNull
     @NotNull
     @Valid
     private User from;
@@ -66,28 +66,28 @@ public class ChosenInlineResult {
     /**
      * The query that was used to obtain the result
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String query;
 
     public ChosenInlineResult() {
     }
 
-    @Nonnull
+    @NonNull
     public String getResultId() {
         return resultId;
     }
 
-    public void setResultId(@Nonnull String resultId) {
+    public void setResultId(@NonNull String resultId) {
         this.resultId = resultId;
     }
 
-    @Nonnull
+    @NonNull
     public User getFrom() {
         return from;
     }
 
-    public void setFrom(@Nonnull User from) {
+    public void setFrom(@NonNull User from) {
         this.from = from;
     }
 
@@ -109,12 +109,12 @@ public class ChosenInlineResult {
         this.inlineMessageId = inlineMessageId;
     }
 
-    @Nonnull
+    @NonNull
     public String getQuery() {
         return query;
     }
 
-    public void setQuery(@Nonnull String query) {
+    public void setQuery(@NonNull String query) {
         this.query = query;
     }
 

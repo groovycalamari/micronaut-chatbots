@@ -21,7 +21,6 @@ import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import javax.annotation.Nonnull;
 import javax.validation.constraints.NotBlank;
 
 @EachProperty("googlechat.bots")
@@ -72,13 +71,13 @@ public class GoogleChatBotConfigurationProperties implements GoogleChatBotConfig
         this.projectId = projectId;
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public String getAtUsername() {
         return atUsername;
     }
 
-    public void setAtUsername(String atUsername) {
+    public void setAtUsername(@NonNull String atUsername) {
         this.atUsername = atUsername;
     }
 }

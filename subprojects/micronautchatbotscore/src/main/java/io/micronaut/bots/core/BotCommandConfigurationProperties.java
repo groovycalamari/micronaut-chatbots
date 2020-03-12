@@ -17,11 +17,10 @@
  */
 package io.micronaut.bots.core;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 @EachProperty("telegram.bots.commands")
 public class BotCommandConfigurationProperties implements BotCommandConfiguration {
@@ -54,7 +53,7 @@ public class BotCommandConfigurationProperties implements BotCommandConfiguratio
         this.parseMode = parseMode;
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public String getName() {
         return this.name;

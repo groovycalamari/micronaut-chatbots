@@ -19,10 +19,10 @@ package io.micronaut.bots.telegram.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.core.annotation.Introspected;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -39,21 +39,21 @@ public class Game {
     /**
      * Title of the game
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String title;
 
     /**
      * Description of the game
      */
-    @Nonnull
+    @NonNull
     @NotBlank
     private String description;
 
     /**
      * Photo that will be displayed in the game message in chats.
      */
-    @Nonnull
+    @NonNull
     @NotNull
     private List<PhotoSize> photo;
 
@@ -79,30 +79,30 @@ public class Game {
     public Game() {
     }
 
-    @Nonnull
+    @NonNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(@Nonnull String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
-    @Nonnull
+    @NonNull
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(@Nonnull String description) {
+    public void setDescription(@NonNull String description) {
         this.description = description;
     }
 
-    @Nonnull
+    @NonNull
     public List<PhotoSize> getPhoto() {
         return photo;
     }
 
-    public void setPhoto(@Nonnull List<PhotoSize> photo) {
+    public void setPhoto(@NonNull List<PhotoSize> photo) {
         this.photo = photo;
     }
 
