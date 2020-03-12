@@ -73,14 +73,9 @@ public class WebhookController {
             if (LOG.isInfoEnabled()) {
                 LOG.info("Returning {}", chatBotResponse.toString());
             }
-            try {
-                String jsonString = objectMapper.writeValueAsString(chatBotResponse);
-                return HttpResponse.ok(jsonString);
-            } catch (JsonProcessingException e) {
-                if (LOG.isInfoEnabled()) {
-                    LOG.info("JSON Proecessing exception {}", e.getMessage());
-                }
-                return HttpResponse.badRequest();
+            if (chatBotResponse instanceof Send) {
+                Send send = ((Send) chatBotResponse);
+                return HttpResponse.ok(send);
             }
         }
         if (LOG.isInfoEnabled()) {
