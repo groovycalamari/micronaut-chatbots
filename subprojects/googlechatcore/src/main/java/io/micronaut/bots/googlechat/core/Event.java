@@ -20,6 +20,8 @@ package io.micronaut.bots.googlechat.core;
 import io.micronaut.bots.core.ChatBotMessageReceive;
 import io.micronaut.core.annotation.Introspected;
 
+import javax.annotation.Nullable;
+
 @Introspected
 public class Event implements ChatBotMessageReceive {
     /**
@@ -36,6 +38,9 @@ public class Event implements ChatBotMessageReceive {
     private Message message;
 
     private User user;
+
+    @Nullable
+    private GoogleChatFormAction action;
 
     /**
      * Constructor.
@@ -84,6 +89,15 @@ public class Event implements ChatBotMessageReceive {
         this.user = user;
     }
 
+    @Nullable
+    public GoogleChatFormAction getAction() {
+        return action;
+    }
+
+    public void setAction(@Nullable GoogleChatFormAction action) {
+        this.action = action;
+    }
+
     @Override
     public String toString() {
         return "MessageReceive{" +
@@ -92,6 +106,7 @@ public class Event implements ChatBotMessageReceive {
                 ", space=" + (space != null ? space.toString() : null) +
                 ", message=" + (message != null ? message.toString() : null) +
                 ", user=" + (user != null ? user.toString() : null) +
+                ", action=" + (action != null ? action.toString() : null) +
                 '}';
     }
 }
