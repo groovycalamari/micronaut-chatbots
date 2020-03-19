@@ -50,8 +50,18 @@ public class GoogleChatMessageParser implements ChatBotMessageParser {
             return Optional.empty();
         }
         Event event = (Event) messageReceive;
+        if (event.getAction() !=null) {
+            // TODO should we do something with params
+            String actionMethodName = event.getAction().getActionMethodName();
+            if (actionMethodName != null) {
+                return Optional.of(actionMethodName);
+            }
+        }
         if (event.getMessage() != null) {
-            return Optional.ofNullable(event.getMessage().getText());
+            String text = event.getMessage().getText();
+            if (text != null) {
+                return Optional.of(text);
+            }
         }
         return Optional.empty();
     }
