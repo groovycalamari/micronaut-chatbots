@@ -89,8 +89,17 @@ public class GoogleChatMessageParser implements ChatBotMessageParser {
             return Optional.empty();
         }
         Event event = (Event) messageReceive;
+        if (event.getUser() != null) {
+            String name = event.getUser().getName();
+            if (name != null) {
+                return Optional.of(name);
+            }
+        }
         if (event.getMessage() != null) {
-            return Optional.ofNullable(event.getMessage().getSender().getName());
+            String name = event.getMessage().getSender().getName();
+            if (name != null) {
+                return Optional.of(name);
+            }
         }
         return Optional.empty();
     }
