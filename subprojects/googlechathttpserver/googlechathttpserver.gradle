@@ -36,19 +36,12 @@ config {
 dependencies {
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"
+    annotationProcessor "io.micronaut:micronaut-validation"
 
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation "io.micronaut:micronaut-inject"
 
-    implementation "com.amazonaws:aws-lambda-java-events:$awsLambdaJavaEventsVersion"
-    implementation "io.micronaut:micronaut-function-aws"
+    implementation "io.micronaut:micronaut-http"
 
     api project(":googlechatsecurity")
-
-    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
-    testImplementation "io.micronaut:micronaut-runtime"
-    testImplementation("org.spockframework:spock-core") {
-        exclude module: 'groovy-all'
-    }
-    testImplementation "io.micronaut:micronaut-inject-groovy"
 }

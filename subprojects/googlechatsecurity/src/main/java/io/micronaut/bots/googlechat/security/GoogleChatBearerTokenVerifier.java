@@ -18,9 +18,20 @@
 package io.micronaut.bots.googlechat.security;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
+import io.micronaut.context.annotation.DefaultImplementation;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
+@DefaultImplementation(DefaultGoogleChatBearerTokenVerifier.class)
 public interface GoogleChatBearerTokenVerifier {
-    void verify(@NonNull @NotBlank String bearerToken) throws UnauthorizedGoogleChatToken;
+    /**
+     *
+     * @param bearerToken Bearer Token
+     * @return Audiencies Claim if exists
+     * @throws UnauthorizedGoogleChatToken if the token failed to verify
+     */
+    @Nullable
+    List<String> verify(@NonNull @NotBlank String bearerToken) throws UnauthorizedGoogleChatToken;
 }

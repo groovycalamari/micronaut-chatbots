@@ -21,6 +21,7 @@ import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
 import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.bots.googlechat.core.GoogleChatBot;
 import io.micronaut.http.HttpHeaderValues;
 import org.slf4j.Logger;
@@ -33,6 +34,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * {@link DefaultGoogleChatBearerTokenVerifier} of {@link GoogleChatBearerTokenVerifier}.
+ */
 @Singleton
 public class DefaultGoogleChatBearerTokenVerifier implements GoogleChatBearerTokenVerifier {
     private static final Logger LOG = LoggerFactory.getLogger(DefaultGoogleChatBearerTokenVerifier.class);
@@ -44,7 +48,8 @@ public class DefaultGoogleChatBearerTokenVerifier implements GoogleChatBearerTok
     }
 
     @Override
-    public void verify(@NonNull @NotBlank String token) throws UnauthorizedGoogleChatToken {
+    @Nullable
+    public List<String> verify(@NonNull @NotBlank String token) throws UnauthorizedGoogleChatToken {
         String bearerToken = token;
 
         try {
@@ -72,6 +77,7 @@ public class DefaultGoogleChatBearerTokenVerifier implements GoogleChatBearerTok
             if (googleChatBots.stream().noneMatch(googleChatBot -> audiencies.contains(googleChatBot.getProjectId()))) {
                 throw new UnauthorizedGoogleChatToken("no bot project id " + googleChatBots.stream().map(GoogleChatBot::getProjectId).collect(Collectors.joining(",")) + " matches audiencies " + audiencies.stream().collect(Collectors.joining(",")));
             }
+            return audiencies;
         } catch (ParseException e) {
             LOG.warn("parsing header {} throws ParseException {}", bearerToken, e.getMessage());
             throw new UnauthorizedGoogleChatToken("audiencies is null");
