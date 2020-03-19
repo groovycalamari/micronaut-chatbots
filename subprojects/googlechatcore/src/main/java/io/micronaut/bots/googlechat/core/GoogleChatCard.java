@@ -82,7 +82,7 @@ public class GoogleChatCard {
     @Override
     public String toString() {
         return "GoogleChatCard{" +
-                "header=" + header != null ? header.toString() : null +
+                "header=" + (header != null ? header.toString() : null) +
                 ", sections=" + (sections != null ? sections.stream().map(GoogleChatCardSection::toString).collect(Collectors.joining(",")) : null) +
                 ", cardActions=" + (cardActions != null ? cardActions.stream().map(GoogleChatCardAction::toString).collect(Collectors.joining(",")) : null) +
                 ", name='" + name + '\'' +
