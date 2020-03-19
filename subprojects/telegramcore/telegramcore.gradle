@@ -38,6 +38,7 @@ dependencies {
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
 
+    // https://github.com/micronaut-projects/micronaut-core/issues/2933
     annotationProcessor "io.micronaut:micronaut-graal"
     compileOnly "org.graalvm.nativeimage:svm:$svmVersion"
 
