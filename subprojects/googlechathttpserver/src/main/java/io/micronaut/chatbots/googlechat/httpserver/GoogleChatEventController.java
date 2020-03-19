@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.chatbots.telegram.httpserver;
+package io.micronaut.chatbots.googlechat.httpserver;
 
 import io.micronaut.bots.core.ChatBotMessageDispatcher;
 import io.micronaut.bots.core.ChatBotMessageSend;
@@ -86,11 +86,18 @@ public class GoogleChatEventController {
                         .contentType(MediaType.TEXT_PLAIN_TYPE);
             }
             GoogleChatBot chatBot = optionalGoogleChatBot.get();
-            Optional<ChatBotMessageSend> message = messageDispatcher.dispatch(chatBot, event);
-            if (LOG.isInfoEnabled()) {
-                LOG.info("Returning {}", message.toString());
+            Optional<ChatBotMessageSend> messageOptional = messageDispatcher.dispatch(chatBot, event);
+            if (messageOptional.isPresent()) {
+                ChatBotMessageSend message = messageOptional.get();
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("Returning {}", message.toString());
+                }
+                return HttpResponse.ok(message);
             }
-            return HttpResponse.ok(message);
+            if (LOG.isInfoEnabled()) {
+                LOG.info("Returning just 200, no message received from dispatcher");
+            }
+            return HttpResponse.ok();
 
         } catch (UnauthorizedGoogleChatToken e) {
             if (LOG.isWarnEnabled()) {

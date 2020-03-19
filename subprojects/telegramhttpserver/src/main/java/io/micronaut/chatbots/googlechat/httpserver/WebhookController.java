@@ -15,9 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.chatbots.telegram.httpserver;
+package io.micronaut.chatbots.googlechat.httpserver;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.bots.core.ChatBotMessageDispatcher;
 import io.micronaut.bots.core.ChatBotMessageSend;
