@@ -27,11 +27,13 @@ import io.micronaut.bots.core.ChatBotMessageSend;
 import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
 import io.micronaut.bots.telegram.httpclient.TelegramBot;
+import io.micronaut.context.ApplicationContextBuilder;
 import io.micronaut.function.aws.MicronautRequestHandler;
 import io.micronaut.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Collection;
@@ -56,6 +58,15 @@ public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayPr
     Collection<TelegramBot> telegramBots;
 
     public TelegramWebhookHandler() {
+    }
+
+    @Nonnull
+    @Override
+    protected ApplicationContextBuilder newApplicationContextBuilder() {
+        ApplicationContextBuilder builder = super.newApplicationContextBuilder();
+        builder.eagerInitConfiguration(true);
+        builder.eagerInitSingletons(true);
+        return builder;
     }
 
     @Override

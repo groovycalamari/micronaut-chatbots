@@ -27,12 +27,14 @@ import io.micronaut.bots.googlechat.core.Event;
 import io.micronaut.bots.googlechat.core.GoogleChatBot;
 import io.micronaut.bots.googlechat.security.GoogleChatBearerTokenVerifier;
 import io.micronaut.bots.googlechat.security.UnauthorizedGoogleChatToken;
+import io.micronaut.context.ApplicationContextBuilder;
 import io.micronaut.function.aws.MicronautRequestHandler;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Collection;
@@ -48,7 +50,6 @@ public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGateway
     public static final String TEXT_PLAIN = "text/plain";
     public static final String PATH_START = "/";
 
-
     static String AUDIENCE = System.getenv("PROJECT_ID");
 
     @Inject
@@ -62,6 +63,15 @@ public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGateway
 
     @Inject
     private GoogleChatBearerTokenVerifier googleChatBearerTokenVerifier;
+
+    @Nonnull
+    @Override
+    protected ApplicationContextBuilder newApplicationContextBuilder() {
+        ApplicationContextBuilder builder = super.newApplicationContextBuilder();
+        builder.eagerInitConfiguration(true);
+        builder.eagerInitSingletons(true);
+        return builder;
+    }
 
     @Override
     public APIGatewayProxyResponseEvent execute(APIGatewayProxyRequestEvent input) {
