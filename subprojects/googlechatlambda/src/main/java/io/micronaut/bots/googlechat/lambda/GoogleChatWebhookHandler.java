@@ -50,6 +50,11 @@ public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGateway
     public static final String TEXT_PLAIN = "text/plain";
     public static final String PATH_START = "/";
 
+    public static final String ENV_EAGER_INIT_CONFIGURATION = "MICRONAUT_EAGER_INIT_CONFIGURATION";
+    public static final String ENV_EAGER_INIT_SINGLETONS = "MICRONAUT_EAGER_INIT_SINGLETONS";
+    public static final boolean DEFAULT_EAGER_INIT_CONFIGURATION = true;
+    public static final boolean DEFAULT_EAGER_INIT_SINGLETONS = true;
+
     static String AUDIENCE = System.getenv("PROJECT_ID");
 
     @Inject
@@ -68,8 +73,21 @@ public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGateway
     @Override
     protected ApplicationContextBuilder newApplicationContextBuilder() {
         ApplicationContextBuilder builder = super.newApplicationContextBuilder();
-        builder.eagerInitConfiguration(true);
-        builder.eagerInitSingletons(true);
+
+        if (System.getenv(ENV_EAGER_INIT_CONFIGURATION) != null) {
+            Boolean eagerInitConfiguration = Boolean.valueOf(System.getenv(ENV_EAGER_INIT_CONFIGURATION));
+            builder.eagerInitConfiguration(eagerInitConfiguration);
+        } else {
+            builder.eagerInitConfiguration(DEFAULT_EAGER_INIT_CONFIGURATION);
+        }
+
+        if (System.getenv(ENV_EAGER_INIT_SINGLETONS) != null) {
+            Boolean eagerInitSingletons = Boolean.valueOf(System.getenv(ENV_EAGER_INIT_SINGLETONS));
+            builder.eagerInitSingletons(eagerInitSingletons);
+        } else {
+            builder.eagerInitSingletons(DEFAULT_EAGER_INIT_SINGLETONS);
+        }
+
         return builder;
     }
 
