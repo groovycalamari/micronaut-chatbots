@@ -41,7 +41,7 @@ dependencies {
     implementation "io.micronaut:micronaut-inject"
 
     api "com.amazonaws:aws-lambda-java-events:$awsLambdaJavaEventsVersion"
-    api "io.micronaut:micronaut-function-aws"
+    api "io.micronaut:micronaut-function-aws:$micronautAwsVersion"
     api project(":googlechatsecurity")
 
     testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
