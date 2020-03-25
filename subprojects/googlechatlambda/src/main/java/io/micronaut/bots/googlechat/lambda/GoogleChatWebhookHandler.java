@@ -74,20 +74,26 @@ public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGateway
     protected ApplicationContextBuilder newApplicationContextBuilder() {
         ApplicationContextBuilder builder = super.newApplicationContextBuilder();
 
-        if (System.getenv(ENV_EAGER_INIT_CONFIGURATION) != null) {
-            Boolean eagerInitConfiguration = Boolean.valueOf(System.getenv(ENV_EAGER_INIT_CONFIGURATION));
-            builder.eagerInitConfiguration(eagerInitConfiguration);
-        } else {
-            builder.eagerInitConfiguration(DEFAULT_EAGER_INIT_CONFIGURATION);
-        }
-
+        boolean eagerInitSingletons = DEFAULT_EAGER_INIT_SINGLETONS;
         if (System.getenv(ENV_EAGER_INIT_SINGLETONS) != null) {
-            Boolean eagerInitSingletons = Boolean.valueOf(System.getenv(ENV_EAGER_INIT_SINGLETONS));
-            builder.eagerInitSingletons(eagerInitSingletons);
-        } else {
-            builder.eagerInitSingletons(DEFAULT_EAGER_INIT_SINGLETONS);
+            eagerInitSingletons = Boolean.parseBoolean(System.getenv(ENV_EAGER_INIT_SINGLETONS));
         }
-
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("eager init singletons {}", eagerInitSingletons);
+        }
+        builder.eagerInitSingletons(eagerInitSingletons);
+        // If singletons are eagerly loaded, it does not matter whether you set eagerInitConfiguration,
+        // ConfigurationReaders are singletons and thus they will be eagerly loaded due to eagerInitSingletons
+        if (!eagerInitSingletons) {
+            boolean eagerInitConfiguration = DEFAULT_EAGER_INIT_CONFIGURATION;
+            if (System.getenv(ENV_EAGER_INIT_CONFIGURATION) != null) {
+                eagerInitConfiguration = Boolean.parseBoolean(System.getenv(ENV_EAGER_INIT_CONFIGURATION));
+            }
+            if (LOG.isTraceEnabled()) {
+                LOG.trace("eager init configuration {}", eagerInitConfiguration);
+            }
+            builder.eagerInitConfiguration(eagerInitConfiguration);
+        }
         return builder;
     }
 
