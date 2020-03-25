@@ -22,7 +22,7 @@ import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import edu.umd.cs.findbugs.annotations.Nullable;
 
-@EachProperty("telegram.bots.commands")
+@EachProperty("telegram.commands")
 public class BotCommandConfigurationProperties implements BotCommandConfiguration {
     private String path;
     private ParseMode parseMode;
