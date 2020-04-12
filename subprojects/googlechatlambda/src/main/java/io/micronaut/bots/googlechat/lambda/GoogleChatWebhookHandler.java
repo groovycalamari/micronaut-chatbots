@@ -28,6 +28,7 @@ import io.micronaut.bots.googlechat.core.GoogleChatBot;
 import io.micronaut.bots.googlechat.security.GoogleChatBearerTokenVerifier;
 import io.micronaut.bots.googlechat.security.UnauthorizedGoogleChatToken;
 import io.micronaut.context.ApplicationContextBuilder;
+import io.micronaut.core.annotation.Introspected;
 import io.micronaut.function.aws.MicronautRequestHandler;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpStatus;
@@ -42,6 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Introspected
 public class GoogleChatWebhookHandler extends MicronautRequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private static final Logger LOG = LoggerFactory.getLogger(GoogleChatWebhookHandler.class);

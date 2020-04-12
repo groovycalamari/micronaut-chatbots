@@ -28,6 +28,7 @@ import io.micronaut.bots.telegram.core.Send;
 import io.micronaut.bots.telegram.core.Update;
 import io.micronaut.bots.telegram.httpclient.TelegramBot;
 import io.micronaut.context.ApplicationContextBuilder;
+import io.micronaut.core.annotation.Introspected;
 import io.micronaut.function.aws.MicronautRequestHandler;
 import io.micronaut.http.HttpStatus;
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Introspected
 public class TelegramWebhookHandler extends MicronautRequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     private static final Logger LOG = LoggerFactory.getLogger(TelegramWebhookHandler.class);
     public static final String APPLICATION_JSON = "application/json";
